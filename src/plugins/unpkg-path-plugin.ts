@@ -7,65 +7,63 @@ const filecache = localforage.createInstance({
 })
 
 
-export const unpkgPathPlugin = () => {
+export const unpkgPathPlugin = (inputCode: string) => {
   return {
     name: 'unpkg-path-plugin',
     setup(build: esbuild.PluginBuild) {
 
-    build.onResolve({filter: /.*/}, async (args: any) => {
-      console.log('onResole', args)
-      if (args.path === 'index.js') {        
-        return {path: args.path, namespace: 'a'}
-      } 
+      //Handler index.js path
+      build.onResolve({filter: /^index\.js$/}, () => {
+        return { path: 'index.js', namespace: 'a' }
+      })
 
-      if (args.path.includes('./') || args.path.includes('../')) {
-        
+      //Handler path in module
+      build.onResolve({filter: /^\.+\//}, (args: any) => {
         return {
           namespace: 'a',
           path: new URL(args.path, 'https://unpkg.com' + args.resolveDir + '/').href
         }
-      }
+      })
 
-      return {
-        namespace: 'a',
-        path: `https://unpkg.com/${args.path}`
-      }
-      
-    })
+      //Handler other
+      build.onResolve({ filter: /.*/ }, async (args: any) => {
+        return {
+          namespace: 'a',
+          path: `https://unpkg.com/${args.path}`
+        }
 
-  build.onLoad({filter: /.*/}, async (args: any) => {
+      })
 
-    console.log('onLoad', args)
-    if (args.path === 'index.js') {
-      return {
-        loader: 'jsx',
-        contents: `
-          import message from 'react'
-          console.log(message)
-        `
-      }
-    } 
+      build.onLoad({ filter: /.*/ }, async (args: any) => {
 
-    //Check filecache
-    const cacheResult = await filecache.getItem<esbuild.OnLoadResult>(args.path)
+        console.log('onLoad', args)
+        if (args.path === 'index.js') {
+          return {
+            loader: 'jsx',
+            contents: inputCode
+          }
+        }
 
-    if (cacheResult) {
-      return cacheResult
-    }
+        //Check filecache
+        const cacheResult = await filecache.getItem<esbuild.OnLoadResult>(args.path)
 
-    const { data, request } = await axios.get(args.path)
-    
-    const getAxiosResult: esbuild.OnLoadResult = {
-      loader: 'jsx',
-      contents: data,
-      resolveDir: new URL('./', request.responseURL).pathname
-    }
+        if (cacheResult) {
+          return cacheResult
+        }
 
-    await filecache.setItem(args.path, getAxiosResult)
+        const { data, request } = await axios.get(args.path)
 
-    return getAxiosResult
-    
-  })
+        const getAxiosResult: esbuild.OnLoadResult = {
+          loader: 'jsx',
+          contents: data,
+          resolveDir: new URL('./', request.responseURL).pathname
+        }
+
+        await filecache.setItem(args.path, getAxiosResult)
+
+        return getAxiosResult
+
+      })
     }
   }
 }
