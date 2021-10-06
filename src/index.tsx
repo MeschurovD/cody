@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import * as esbuild from 'esbuild-wasm'
 import { unpkgPathPlugin } from './plugins/unpkg-path-plugin'
+import { fetchPlugin } from './plugins/fetch-plugin'
 
 const App: React.FC = () => {
 
@@ -12,7 +13,7 @@ const App: React.FC = () => {
   const startService = async () => {
     await esbuild.initialize({
       worker: true,
-      wasmURL: '/esbuild.wasm'
+      wasmURL: 'https://unpkg.com/esbuild-wasm@0.13.3/esbuild.wasm'
     })
     ref.current = true
   } 
@@ -30,7 +31,10 @@ const App: React.FC = () => {
       entryPoints: ['index.js'],
       bundle: true,
       write: false,
-      plugins: [unpkgPathPlugin(input)],
+      plugins: [
+        unpkgPathPlugin(),
+        fetchPlugin(input)
+      ],
       define: {
         'process.env.NODE_ENV': '"production"',
         global: 'window'
