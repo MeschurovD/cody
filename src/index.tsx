@@ -1,14 +1,20 @@
+
+//<--------------------IMPORT-------------------------->
 import { useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import * as esbuild from 'esbuild-wasm'
 import { unpkgPathPlugin } from './plugins/unpkg-path-plugin'
 import { fetchPlugin } from './plugins/fetch-plugin'
 
+
+//<--------------------COMPONENT----------------------->
 const App: React.FC = () => {
 
+
+//<--------------------DATA AND STATES----------------->
   const [input, setInput] = useState('')
-  const [code, setCode] = useState('')
   const ref = useRef(false)
+  const iframeRef = useRef<any>()
 
   const startService = async () => {
     await esbuild.initialize({
@@ -26,6 +32,9 @@ const App: React.FC = () => {
     if (!ref.current) {
       return
     }
+
+    iframeRef.current.srcdoc = html
+
     console.log(ref.current);
     const result = await esbuild.build({
       entryPoints: ['index.js'],
@@ -41,16 +50,39 @@ const App: React.FC = () => {
       }
     })
     console.log(result)
-    setCode(result.outputFiles[0].text)
+    console.log(iframeRef)
+    iframeRef.current.contentWindow.postMessage(result.outputFiles[0].text, '*')
   }
  
+  const html = `
+    <html>
+      <head></head>
+      <body>
+        <div id="root"></div>
+        <script>
+          window.addEventListener('message', (event) => {
+            try {
+              eval(event.data)
+            } catch (err) {
+              const root = document.querySelector('#root')
+              root.innerHTML = '<div>' + err + '</div>'
+              console.error(err)
+            }
+          })
+        </script>
+      </body>
+    </html>
+  `
+
+
+//<--------------------JSX COMPONENT------------------->
   return (
     <div>
       <textarea value={input} onChange={(e) => setInput(e.target.value)}></textarea>
       <div>
         <button onClick={onClick}>Sumbit</button>
       </div>
-      <pre>{code}</pre>
+      <iframe title='code' ref={iframeRef} srcDoc={html} sandbox='allow-scripts' />
     </div>
   )
 }
