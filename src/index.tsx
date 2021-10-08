@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom'
 import * as esbuild from 'esbuild-wasm'
 import { unpkgPathPlugin } from './plugins/unpkg-path-plugin'
 import { fetchPlugin } from './plugins/fetch-plugin'
+import CodeEditor from './components/CodeEditor/CodeEditor'
 
 
 //<--------------------COMPONENT----------------------->
@@ -12,7 +13,7 @@ const App: React.FC = () => {
 
 
 //<--------------------DATA AND STATES----------------->
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState<string | undefined>('')
   const ref = useRef(false)
   const iframeRef = useRef<any>()
 
@@ -78,7 +79,7 @@ const App: React.FC = () => {
 //<--------------------JSX COMPONENT------------------->
   return (
     <div>
-      <textarea value={input} onChange={(e) => setInput(e.target.value)}></textarea>
+      <CodeEditor initialValue={input} onChange={setInput} />
       <div>
         <button onClick={onClick}>Sumbit</button>
       </div>
