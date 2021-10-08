@@ -13,7 +13,6 @@ const App: React.FC = () => {
 
 //<--------------------DATA AND STATES----------------->
   const [input, setInput] = useState('')
-  const [code, setCode] = useState('')
   const ref = useRef(false)
   const iframeRef = useRef<any>()
 
@@ -33,6 +32,9 @@ const App: React.FC = () => {
     if (!ref.current) {
       return
     }
+
+    iframeRef.current.srcdoc = html
+
     console.log(ref.current);
     const result = await esbuild.build({
       entryPoints: ['index.js'],
@@ -48,7 +50,6 @@ const App: React.FC = () => {
       }
     })
     console.log(result)
-    //setCode(result.outputFiles[0].text)
     console.log(iframeRef)
     iframeRef.current.contentWindow.postMessage(result.outputFiles[0].text, '*')
   }
@@ -57,13 +58,15 @@ const App: React.FC = () => {
     <html>
       <head></head>
       <body>
-        <div id="root">$</div>
+        <div id="root"></div>
         <script>
           window.addEventListener('message', (event) => {
             try {
               eval(event.data)
             } catch (err) {
-              console.log(err)
+              const root = document.querySelector('#root')
+              root.innerHTML = '<div>' + err + '</div>'
+              console.error(err)
             }
           })
         </script>
@@ -79,8 +82,7 @@ const App: React.FC = () => {
       <div>
         <button onClick={onClick}>Sumbit</button>
       </div>
-      <pre>{code}</pre>
-      <iframe ref={iframeRef} srcDoc={html} sandbox='allow-scripts' />
+      <iframe title='code' ref={iframeRef} srcDoc={html} sandbox='allow-scripts' />
     </div>
   )
 }
