@@ -2,6 +2,7 @@ import * as esbuild from 'esbuild-wasm'
 import { fetchPlugin } from '../plugins/fetch-plugin'
 import { unpkgPathPlugin } from '../plugins/unpkg-path-plugin'
 
+//Создание конфигурации esbuild
 export const startService = async () => {
   await esbuild.initialize({
     worker: true,
@@ -9,14 +10,15 @@ export const startService = async () => {
   })
 }
 
-export const build = async (input: string | undefined, fetchTest: Function) => {
+//Сборка esbuild
+export const build = async (input: string | undefined) => {
   const result = await esbuild.build({
     entryPoints: ['index.js'],
     bundle: true,
     write: false,
     plugins: [
       unpkgPathPlugin(),
-      fetchPlugin(input, fetchTest)
+      fetchPlugin(input)
     ],
     define: {
       'process.env.NODE_ENV': '"production"',

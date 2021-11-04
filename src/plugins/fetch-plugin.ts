@@ -1,10 +1,9 @@
 import * as esbuild from 'esbuild-wasm'
 import axios from 'axios'
-import localforage from 'localforage'
 
-const filecache = localforage.createInstance({
-  name: 'filecache'
-})
+
+const cache: any[] = []
+
 
 export const fetchPlugin = (inputCode: string | undefined) => {
   return {
@@ -18,16 +17,30 @@ export const fetchPlugin = (inputCode: string | undefined) => {
         }
       })
 
-      build.onLoad({ filter: /.*/ }, async (args: any) => {
-        //Check filecache
-        const cacheResult = await filecache.getItem<esbuild.OnLoadResult>(args.path)
+      // build.onLoad({ filter: /.*/ }, async (args: any) => {
+      //   //Check filecache
+      //   const cacheResult = await filecache.getItem<esbuild.OnLoadResult>(args.path)
 
-        if (cacheResult) {
-          return cacheResult
-        }
-      })
+      //   if (cacheResult) {
+      //     return cacheResult
+      //   }
+        // console.log('111')
+        // const cacheResult = await mem.find((item) => item.path === args.path)
+        // console.log(mem)
+
+        // if (cacheResult) {
+        //   return cacheResult
+        // }
+      // })
 
       build.onLoad({ filter: /.css$/ }, async (args: any) => {
+
+        const cacheResult = await cache.find((item) => item.path === args.path)
+
+        if (cacheResult) {
+          return cacheResult.getAxiosResult
+        }
+
         const { data, request }: { data: string, request: any } = await axios.get(args.path)
 
         const escaped = data
@@ -47,13 +60,24 @@ export const fetchPlugin = (inputCode: string | undefined) => {
           resolveDir: new URL('./', request.responseURL).pathname
         }
 
-        await filecache.setItem(args.path, getAxiosResult)
+        await cache.push({
+          path: args.path,
+          getAxiosResult
+        })
+
 
         return getAxiosResult
       })
 
       build.onLoad({ filter: /.*/ }, async (args: any) => {
-        
+
+
+        const cacheResult = await cache.find((item) => item.path === args.path)
+
+        if (cacheResult) {
+          return cacheResult.getAxiosResult
+        }
+
         const { data, request } = await axios.get(args.path)
 
        
@@ -63,7 +87,10 @@ export const fetchPlugin = (inputCode: string | undefined) => {
           resolveDir: new URL('./', request.responseURL).pathname
         }
 
-        await filecache.setItem(args.path, getAxiosResult)
+        await cache.push({
+          path: args.path,
+          getAxiosResult
+        })
 
         return getAxiosResult
 
