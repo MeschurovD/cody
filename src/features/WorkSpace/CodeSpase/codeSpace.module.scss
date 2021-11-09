@@ -1,0 +1,59 @@
+.code_space {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  
+
+  //margin-top: 8rem;
+  //margin-left: max(3rem, 3vw);
+  //margin-bottom: 2rem;
+  margin: 8rem max(3rem, 3vw) 2rem;
+
+  gap: 3rem;
+
+  .item {
+    width: clamp(40rem, 95%, 120rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    @include shadow;
+    //box-shadow: 1rem 1rem var(--shadow-2-color);
+    //@include shadow;
+    //@include drop-shadow;
+    border-radius: 2rem;
+    background-image: linear-gradient(120deg, rgb($bg-1), rgb($bg-2));
+    
+
+    .control_panel {
+      width: 96%;
+      height: 20rem;
+    }
+  }
+
+  .test_1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 96%;
+    //height: 60rem;
+    height: clamp(10rem, 60vh, 60rem);
+    border-radius: 1rem;
+    padding: 3rem;
+    margin-bottom: 2rem;
+    //flex: 1 1;
+    @include inner-shadow;
+
+    .test_2 {
+      width: 100%;
+      height: 100%;
+      //margin: 3rem 3rem;
+      border-radius: 1rem;
+      //@include drop-shadow;
+      background-color: #1f1f1f;
+      border: 1px solid rgba($shadow-2-color, .2);
+      padding: .5rem;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+
+@mixin drop-shadow {
+  box-shadow: -1rem -1rem 1.5rem rgba($shadow-1-color, .4),
+   1.5rem 1.5rem 1.5rem 0 rgba($shadow-2-color, .2);
+}
+
+@mixin inner-shadow {
+  box-shadow: inset -1rem -1rem 1rem 0 rgba($shadow-1-color, .4) ,
+  inset 1.5rem 1.5rem 1rem rgba($shadow-2-color, .4);
+}
+
+@mixin shadow {
+  box-shadow: 1rem 1.5rem 1.5rem 1rem rgba($shadow-2-color, .8),
+  inset 1rem 1rem 1rem rgb($border-color-1),
+  inset -1rem -1rem 1rem rgba($border-color-2, .8);
+}
