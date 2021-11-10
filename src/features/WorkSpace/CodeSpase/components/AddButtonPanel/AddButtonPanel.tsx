@@ -1,19 +1,26 @@
 import React from 'react';
-import AddButton from '../../../components/AddButton/AddButton';
+import AddButton from '../../../../../components/AddButton/AddButton';
 
 import styles from './addButtonPanel.module.scss'
 
-const AddButtonPanel: React.FC = () => {
+interface PropsType {
+  onClickCodeButton: Function
+  onClickWindowButton: Function
+}
+
+const AddButtonPanel: React.FC<PropsType> = (props) => {
 
   const codeIcon = 'bx bx-code-alt'
   const windowIcon = 'bx bx-window'
 
   const onClickCodeButton = () => {
     console.log('onClickCodeButton')
+    props.onClickCodeButton()
   }
 
   const onClickWindowButton = () => {
     console.log('onClickWindowButton')
+    props.onClickWindowButton()
   }
   return (
     <div className={styles.panel}>

@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // @ts-ignore
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Main from './features/Main/Main';
 import Cody from './Cody'
 import WorkSpace from './features/WorkSpace/WorkSpace';
+import { startService } from './esBuild/esbuild';
 
 const App: React.FC = () => {
 
   const isReg = true
+
+  useEffect(() => {
+    startService()
+  }, [])
   return (
     <BrowserRouter>
         <Switch>

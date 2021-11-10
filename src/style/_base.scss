@@ -17,22 +17,23 @@ html {
 
 
 :root {
-  --bg-1: 209, 219, 229;
-  --bg-2: 122, 120, 134;
+  --bg-2: 209, 219, 229;
+  --bg-1: 122, 120, 134;
   --base-color: 157, 165, 176;
-  --shadow-1-color: 35, 225, 251;
+  --shadow-1-color: 209, 219, 229;
   //--shadow-2-color: #0d2750;
   --shadow-2-color: 83, 80, 88;
 
   --border-1: 103, 112, 117;
   --border-2: 83, 92, 97;
   color: #292d32;
+
 }
 
 .dark_theme {
-  --bg-1: 93, 101, 103;
+  --bg-2: 93, 101, 103;
   //--bg-2: 53, 39, 52;
-  --bg-2: 73, 71, 73;
+  --bg-1: 73, 71, 73;
   --base-color: 72, 71, 77;
   --shadow-1-color: 113, 121, 123;
   //--shadow-2-color: 41, 45, 50;
@@ -44,4 +45,8 @@ html {
 
   --button-color: rgb(35, 209, 234);
   color: #f0f0f3;
+}
+
+@mixin work-space-container {
+  width: clamp(40rem, 100%, 140rem);
 }

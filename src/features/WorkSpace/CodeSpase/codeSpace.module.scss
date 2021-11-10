@@ -8,27 +8,27 @@
   //margin-top: 8rem;
   //margin-left: max(3rem, 3vw);
   //margin-bottom: 2rem;
-  margin: 8rem max(3rem, 3vw) 2rem;
+  margin: 8rem max(1rem, 3vw) 2rem;
 
   gap: 3rem;
 
   .item {
-    width: clamp(40rem, 95%, 120rem);
+    width: clamp(40rem, 100vw, 140rem);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    @include shadow;
+    //@include shadow;
     //box-shadow: 1rem 1rem var(--shadow-2-color);
     //@include shadow;
-    //@include drop-shadow;
+    @include drop-shadow;
     border-radius: 2rem;
     background-image: linear-gradient(120deg, rgb($bg-1), rgb($bg-2));
     
 
     .control_panel {
       width: 96%;
-      height: 20rem;
+      height: 10rem;
     }
   }
 
@@ -40,10 +40,10 @@
     //height: 60rem;
     height: clamp(10rem, 60vh, 60rem);
     border-radius: 1rem;
-    padding: 3rem;
+    //padding: 3rem;
     margin-bottom: 2rem;
     //flex: 1 1;
-    @include inner-shadow;
+    @include drop-shadow;
 
     .test_2 {
       width: 100%;

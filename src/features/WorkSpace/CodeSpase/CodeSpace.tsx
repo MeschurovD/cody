@@ -1,27 +1,42 @@
-import React, { useState } from 'react';
-import CodeEditor from '../../../components/CodeEditor/CodeEditor';
-import AddButtonPanel from '../AddButtonPanel/AddButtonPanel';
+import React from 'react';
+import { useTypeDispatch, useTypeSelector } from '../../../hooks/redux';
+import { addCodePanel, addIframe } from '../../../reducer/codeSlice';
+import AddButtonPanel from './components/AddButtonPanel/AddButtonPanel';
 
 import styles from './codeSpace.module.scss'
+import CodePanel from './components/CodePanel/CodePanel';
+import IframeWindow from './components/IframeWindow/IframeWindow';
 
 const CodeSpace: React.FC = () => {
 
-  const [input, setInput] = useState<string | undefined>('')
 
+  const dispatch = useTypeDispatch()
+  const workSpace = useTypeSelector(state => state.code.workSpace)
+
+  const workSpaceItems = workSpace.map((item, key) => {
+    console.log(item)
+    if (item.type === 'code') {
+      return <CodePanel key={key} />
+    }
+    if (item.type === 'iframe') {
+      console.log('iframe')
+      return <IframeWindow key={key} />
+    }
+  })
+
+  const onClickCodeButton = () => {
+    dispatch(addCodePanel())
+  }
+
+  const onClickWindowButton = () => {
+    dispatch(addIframe())
+  }
+
+  console.log(workSpaceItems)
   return (
     <div className={styles.code_space}>
-      <div className={styles.item}>
-        <div className={styles.control_panel}>
-          <input type="text" />
-        </div>
-        <div className={styles.test_1}>
-          <div className={styles.test_2}>
-            <CodeEditor initialValue={input} onChange={setInput} />
-          </div>
-        </div>
-
-      </div>
-      <AddButtonPanel />
+      {workSpaceItems}
+      <AddButtonPanel onClickCodeButton={onClickCodeButton} onClickWindowButton={onClickWindowButton} />
     </div>
   );
 };

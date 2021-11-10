@@ -1,7 +1,9 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit"
+import codeSlice from "./codeSlice"
 
 
 const rootReducer = combineReducers({
+  code: codeSlice,
 })
 
 export const setupStore = () => {
