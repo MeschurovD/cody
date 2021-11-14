@@ -1,4 +1,5 @@
 .iframe {
+  position: relative;
   height: 100%;
   width: 100%;
 
@@ -6,5 +7,13 @@
     height: 100%;
     width: 100%;
     background-color: #fff;
+  }
+
+  .error {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    color: red;
+    font-size: 1.6rem;
   }
 }

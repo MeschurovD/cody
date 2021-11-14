@@ -6,6 +6,7 @@ import AddButtonPanel from './components/AddButtonPanel/AddButtonPanel';
 import styles from './codeSpace.module.scss'
 import CodePanel from './components/CodePanel/CodePanel';
 import IframeWindow from './components/IframeWindow/IframeWindow';
+import _uniqueId from 'lodash/uniqueId'
 
 const CodeSpace: React.FC = () => {
 
@@ -16,20 +17,20 @@ const CodeSpace: React.FC = () => {
   const workSpaceItems = workSpace.map((item, key) => {
     console.log(item)
     if (item.type === 'code') {
-      return <CodePanel key={key} />
+      return <CodePanel item={item} key={item.id} />
     }
     if (item.type === 'iframe') {
       console.log('iframe')
-      return <IframeWindow key={key} />
+      return <IframeWindow item={item} key={item.id} />
     }
   })
 
   const onClickCodeButton = () => {
-    dispatch(addCodePanel())
+    dispatch(addCodePanel({id: _uniqueId()}))
   }
 
   const onClickWindowButton = () => {
-    dispatch(addIframe())
+    dispatch(addIframe({id: _uniqueId()}))
   }
 
   console.log(workSpaceItems)

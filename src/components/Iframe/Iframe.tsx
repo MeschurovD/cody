@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { build } from '../../esBuild/esbuild';
 import styles from './iframe.module.scss'
 
@@ -6,17 +6,27 @@ interface PropsType {
   code: string | undefined
 }
 
-const Iframe: React.FC<PropsType> = ({code = undefined}) => {
+const Iframe: React.FC<PropsType> = ({ code = undefined }) => {
 
   const iframeRef = useRef<any>()
+  const [error, setError] = useState()
 
   useEffect(() => {
-    if (code) {
-      const timer = setTimeout(async () => {
-        const output = await build(code)
-        iframeRef.current.contentWindow.postMessage(output, '*')
-      }, 750)
+    const buildCode = async () => {
+      const output = await build(code)
+      setError(output.error)
+      iframeRef.current.contentWindow.postMessage(output.code, '*')
     }
+    buildCode()
+    // const timer = setTimeout(async () => {
+    //   const output = await build(code)
+    //   setError(output.error)
+    //   iframeRef.current.contentWindow.postMessage(output.code, '*')
+    // }, 750)
+
+    // return () => {
+    //   clearTimeout(timer)
+    // }
   }, [code])
 
   const html = `
@@ -25,13 +35,20 @@ const Iframe: React.FC<PropsType> = ({code = undefined}) => {
       <body>
         <div id="root"></div>
         <script>
+          const handleError = (error) => {
+            const root = document.querySelector('#root')
+            root.innerHTML = '<div>' + error + '</div>'
+            console.error(error)
+          }
+          window.addEventListener('error', (error) => {
+            event.preventDefault()
+            handleError(error.message)
+          })
           window.addEventListener('message', (event) => {
             try {
               eval(event.data)
             } catch (err) {
-              const root = document.querySelector('#root')
-              root.innerHTML = '<div>' + err + '</div>'
-              console.error(err)
+              handleError(err)
             }
           })
         </script>
@@ -42,6 +59,7 @@ const Iframe: React.FC<PropsType> = ({code = undefined}) => {
   return (
     <div className={styles.iframe}>
       <iframe title='code' ref={iframeRef} srcDoc={html} sandbox='allow-scripts' />
+      {error && <div className={styles.error}>{error}</div>}
     </div>
   );
 };
