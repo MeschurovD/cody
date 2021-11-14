@@ -12,18 +12,29 @@ export const startService = async () => {
 
 //Сборка esbuild
 export const build = async (input: string | undefined) => {
-  const result = await esbuild.build({
-    entryPoints: ['index.js'],
-    bundle: true,
-    write: false,
-    plugins: [
-      unpkgPathPlugin(),
-      fetchPlugin(input)
-    ],
-    define: {
-      'process.env.NODE_ENV': '"production"',
-      global: 'window'
+  try {
+    const result = await esbuild.build({
+      entryPoints: ['index.js'],
+      bundle: true,
+      write: false,
+      plugins: [
+        unpkgPathPlugin(),
+        fetchPlugin(input)
+      ],
+      define: {
+        'process.env.NODE_ENV': '"production"',
+        global: 'window'
+      }
+    })
+    return {
+      code: result.outputFiles[0].text,
+      error: ''
     }
-  })
-  return result.outputFiles[0].text
+  } catch (err: any) {
+    return {
+      code: '',
+      error: err.message
+    }
+  }
+  
 }
