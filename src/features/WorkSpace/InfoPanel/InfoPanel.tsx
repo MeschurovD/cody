@@ -15,8 +15,8 @@ const InfoPanel: React.FC<PropsType> = ({id}) => {
   })
 
   return (
-    <div>
-      
+    <div className={styles.info}>
+      {info.name}
     </div>
   );
 };

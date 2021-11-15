@@ -17,6 +17,10 @@ const spacesSlice = createSlice({
         codeCount: 1
       })
     },
+    changeName(state, action) {
+      const index = state.workSpaces.findIndex(item => item.id === action.payload.id)
+      state.workSpaces[index].name = action.payload.name
+    },
     removeSpace(state, action) {
       const index = state.workSpaces.findIndex(item => item.id === action.payload.id)
       state.workSpaces.splice(index, 1)
@@ -24,5 +28,5 @@ const spacesSlice = createSlice({
   }
 })
 
-export const { addSpace, removeSpace } = spacesSlice.actions
+export const { addSpace, removeSpace,changeName } = spacesSlice.actions
 export default spacesSlice.reducer
