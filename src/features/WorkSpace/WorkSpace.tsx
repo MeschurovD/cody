@@ -1,18 +1,25 @@
+
+//<--------------------IMPORT-------------------------->
 import React from 'react';
+import { useParams } from 'react-router';
+import Header from '../../components/Header/Header';
 import CodeSpace from './CodeSpase/CodeSpace';
 
 import styles from './workSpace.module.scss'
 
+
+//<--------------------COMPONENT----------------------->
 const WorkSpace: React.FC = () => {
 
-  const changeTheme = () => {
-    document.body.classList.toggle(styles.dark_theme)
-  }
 
+//<--------------------DATA AND STATES----------------->
+  const params: {id: string} = useParams()
+
+
+//<--------------------JSX COMPONENT------------------->
   return (
     <div className={styles.work_space}>
-      <button onClick={changeTheme}>theme</button>
-     
+      <Header />
       <div className={styles.code_space}>
         <CodeSpace />
       </div>

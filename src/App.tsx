@@ -22,7 +22,7 @@ const App: React.FC = () => {
           <Route path='/cody' component={Cody} />
           {/* <Route path='/register' component={Registration} />
           <Route path='/card/:username/:reponame' component={Repository} /> */}
-          <Route path='/work_space' component={WorkSpace} />
+          <Route path='/work_space/:id' component={WorkSpace} />
           <Redirect to="/main" />
         </Switch>
     </BrowserRouter>

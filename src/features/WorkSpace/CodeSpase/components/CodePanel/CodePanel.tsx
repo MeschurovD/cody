@@ -6,20 +6,23 @@ import CodeEditor from '../../../../../components/CodeEditor/CodeEditor';
 import Iframe from '../../../../../components/Iframe/Iframe';
 import Resizable from '../../../../../components/Resizable/Resizable';
 import { useTypeDispatch, useTypeSelector } from '../../../../../hooks/redux';
-import { updateCode } from '../../../../../reducer/codeSlice';
+import { updateContent } from '../../../../../reducer/codeSlice';
 import { CodePanelType } from '../../../../../reducer/types/codeTypes';
 import { getCumulativeCode } from '../../utils/cumulativeCode'
+import HeaderPanel from '../HeaderPanel/HeaderPanel';
 import styles from './codePanel.module.scss'
 
 
 //<--------------------TYPE---------------------------->
 interface PropsType {
   item: CodePanelType
+  first: boolean
+  end: boolean
 }
 
 
 //<--------------------COMPONENT----------------------->
-const CodePanel: React.FC<PropsType> = ({item}) => {
+const CodePanel: React.FC<PropsType> = ({item, first, end}) => {
 
   const dispatch = useTypeDispatch()
   const [input, setInput] = useState<string | undefined>('')
@@ -30,6 +33,9 @@ const CodePanel: React.FC<PropsType> = ({item}) => {
     return getCumulativeCode(workSpace, item)
   })
 
+  const isMoveUp = !first
+  const isMoveDown = !end
+
   console.log(cumulativeCode)
 
 
@@ -37,7 +43,8 @@ const CodePanel: React.FC<PropsType> = ({item}) => {
   useEffect(() => {
     
     const timer = setTimeout(() => {
-      dispatch(updateCode({id: item.id, code: input}))
+      console.log('timer')
+      dispatch(updateContent({id: item.id, content: input}))
     }, 750)
 
     return () => {
@@ -67,17 +74,17 @@ const CodePanel: React.FC<PropsType> = ({item}) => {
 
 //<--------------------JSX COMPONENT------------------->
   return (
-    <div className={styles.item}>
+    <HeaderPanel item={item} isMoveUp={isMoveUp} isMoveDown={isMoveDown} >
       <div className={styles.control_panel}>
-        <input type="text" />
+        {/* <input type="text" /> */}
         <button onClick={onClickIframe}>iframe</button>
-        <ButtonsMenu id={item.id} isRemove={true} isMoveUp={true} isMoveDown={true} />
+        {/* <ButtonsMenu id={item.id} isRemove={true} isMoveUp={isMoveUp} isMoveDown={isMoveDown} /> */}
       </div>
       <div className={styles.code_space}>
         {codeSpace}
       </div>
 
-    </div>
+    </HeaderPanel>
   );
 };
 
