@@ -1,7 +1,7 @@
 export interface CodePanelType {
   id: string
   type: string
-  code: string | undefined
+  content: string | undefined
 }
 
 interface IframeType {
@@ -10,5 +10,6 @@ interface IframeType {
 }
 
 export interface InitialStateType {
+  id: number
   workSpace: CodePanelType[]
 }

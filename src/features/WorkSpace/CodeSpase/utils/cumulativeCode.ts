@@ -33,7 +33,7 @@ export const getCumulativeCode = (workSpace: CodePanelType[], item: CodePanelTyp
       } else {
         cumulativeCode.push(noShow)
       }
-      cumulativeCode.push(c.code)
+      cumulativeCode.push(c.content)
     }
     if (c.id === item.id) {
       break

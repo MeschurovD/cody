@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { CodePanelType, InitialStateType } from "./types/codeTypes";
 import _uniqueId from 'lodash/uniqueId'
+import { addSpace } from "./spacesSlice";
 
 const initialState: InitialStateType = {
+  id: 0,
   workSpace: [
     {
       id: _uniqueId(),
       type: 'code',
-      code: ''
+      content: ''
     }
   ]
 }
@@ -16,11 +18,19 @@ const codeSlice = createSlice({
   name: 'code',
   initialState,
   reducers: {
+    newSpace(state, action) {
+      state.id = action.payload.id
+      state.workSpace = [{
+        id: _uniqueId(),
+        type: 'code',
+        content: ''
+      }]
+    },
     addCodePanel(state, action) {
       state.workSpace.push({
         id: action.payload.id,
         type: 'code',
-        code: ''
+        content: ''
       })
 
     },
@@ -28,7 +38,14 @@ const codeSlice = createSlice({
       state.workSpace.push({
         id: action.payload.id,
         type: 'iframe',
-        code: undefined
+        content: undefined
+      })
+    },
+    addText(state, action) {
+      state.workSpace.push({
+        id: action.payload.id,
+        type: 'text',
+        content: ''
       })
     },
     deleteItem(state, action) {
@@ -38,7 +55,7 @@ const codeSlice = createSlice({
     moveUp(state, action) {
       const firstIndex: number = state.workSpace.findIndex(item => item.id === action.payload.id)
       const secondIndex = firstIndex - 1
-     
+
       const mas = state.workSpace.map((item, index) => {
         if (index === firstIndex) {
           return state.workSpace[secondIndex]
@@ -48,14 +65,14 @@ const codeSlice = createSlice({
         }
         return item
       })
-     
+
       //@ts-ignore
       state.workSpace = mas
     },
     moveDown(state, action) {
       const firstIndex: number = state.workSpace.findIndex(item => item.id === action.payload.id)
       const secondIndex = firstIndex + 1
-     
+
       const mas = state.workSpace.map((item, index) => {
         if (index === firstIndex) {
           return state.workSpace[secondIndex]
@@ -65,22 +82,34 @@ const codeSlice = createSlice({
         }
         return item
       })
-     
+
       //@ts-ignore
       state.workSpace = mas
     },
-    updateCode(state, action) {
+    updateContent(state, action) {
       const index = state.workSpace.findIndex(item => item.id === action.payload.id)
       //@ts-ignore
-      state.workSpace[index].code = action.payload.code
+      state.workSpace[index].content = action.payload.content
     }
+  },
+  extraReducers: (builder) => {
+    builder
+    .addCase(addSpace, (state, action: any) => {
+      state.id = action.payload.id
+      state.workSpace = [{
+        id: _uniqueId(),
+        type: 'code',
+        content: ''
+      }]
+    })
   }
 })
 
 export const {
   addCodePanel,
   addIframe,
-  updateCode,
+  addText,
+  updateContent,
   moveUp,
   moveDown,
   deleteItem
