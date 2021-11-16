@@ -2,6 +2,7 @@ const path = require('path')
 const miniCss = require('mini-css-extract-plugin')
 const HTMLPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 const resourcesLoader = {
   loader: 'sass-resources-loader',
@@ -106,6 +107,7 @@ module.exports = {
     new HTMLPlugin({
       template: path.resolve(__dirname, 'src/index.html')
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new Dotenv()
   ]
 }
