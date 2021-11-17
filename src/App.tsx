@@ -5,6 +5,7 @@ import Main from './features/Main/Main';
 import Cody from './Cody'
 import WorkSpace from './features/WorkSpace/WorkSpace';
 import { startService } from './esBuild/esbuild';
+import Registration from './features/Registration/Registration';
 
 const App: React.FC = () => {
 
@@ -20,8 +21,8 @@ const App: React.FC = () => {
             {isReg ? <Main /> : <Redirect to='/register' />}
           </Route>
           <Route path='/cody' component={Cody} />
-          {/* <Route path='/register' component={Registration} />
-          <Route path='/card/:username/:reponame' component={Repository} /> */}
+          <Route path='/register' component={Registration} />
+          {/* <Route path='/card/:username/:reponame' component={Repository} /> */}
           <Route path='/work_space/:id' component={WorkSpace} />
           <Redirect to="/main" />
         </Switch>

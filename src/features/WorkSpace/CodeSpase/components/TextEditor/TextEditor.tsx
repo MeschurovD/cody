@@ -49,6 +49,7 @@ const TextEditor: React.FC<PropsType> = ({ item, first, end }) => {
   return (
     <HeaderPanel item={item} isMoveUp={isMoveUp} isMoveDown={isMoveDown}>
       <TextEditor
+        data={item.content}
         maxWidth={300}
         onInitialize={handleInitialize}
         onChange={saveChange}

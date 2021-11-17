@@ -1,11 +1,13 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit"
+import authSlice from "./authSlice"
 import codeSlice from "./codeSlice"
 import spacesSlice from "./spacesSlice"
 
 
 const rootReducer = combineReducers({
   code: codeSlice,
-  spaces: spacesSlice
+  spaces: spacesSlice,
+  auth: authSlice
 })
 
 export const setupStore = () => {

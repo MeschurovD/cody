@@ -1,13 +1,19 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom'
+import { useTypeDispatch } from '../../hooks/redux';
+import { removeLogin } from '../../reducer/authSlice';
+import { clearWorkSpace, updateLoading } from '../../reducer/codeSlice';
+import { cleaningWorkSpaces } from '../../reducer/spacesSlice';
 import styles from './header.module.scss'
 
 const Header: React.FC = () => {
 
   let history = useHistory()
+  const dispatch = useTypeDispatch()
 
   const redirectToMain = () => {
     history.push('/main')
+    dispatch(updateLoading())
   }
 
   const changeTheme = () => {
@@ -15,7 +21,12 @@ const Header: React.FC = () => {
   }
 
   const onClickLogOut = () => {
-    console.log('onClickLogOut')
+    dispatch(removeLogin())
+    sessionStorage.removeItem('user')
+    setTimeout(() => {
+      dispatch(cleaningWorkSpaces())
+      dispatch(clearWorkSpace())
+    }, 1000)
   }
 
   return (

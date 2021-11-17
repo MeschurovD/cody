@@ -1,6 +1,6 @@
 
 //<--------------------IMPORT-------------------------->
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTypeDispatch, useTypeSelector } from '../../../hooks/redux';
 import { addCodePanel, addIframe, addText } from '../../../reducer/codeSlice';
 import AddButtonPanel from './components/AddButtonPanel/AddButtonPanel';
@@ -10,16 +10,19 @@ import CodePanel from './components/CodePanel/CodePanel';
 import IframeWindow from './components/IframeWindow/IframeWindow';
 import _uniqueId from 'lodash/uniqueId'
 import TextEditor from './components/TextEditor/TextEditor';
+import { updateWorkSpace } from '../../../Firebase/actions/firestoreAction';
 
+interface PropsType {
+  id: string
+}
 
 //<--------------------COMPONENT----------------------->
-const CodeSpace: React.FC = () => {
+const CodeSpace: React.FC<PropsType> = ({id}) => {
 
 
 //<--------------------DATA AND STATES----------------->
   const dispatch = useTypeDispatch()
   const workSpace = useTypeSelector(state => state.code.workSpace)
-  console.log(workSpace)
 
   const workSpaceItems = workSpace.map((item, index) => {
     const first = index === 0
@@ -35,18 +38,23 @@ const CodeSpace: React.FC = () => {
     }
   })
 
+  useEffect(() => {
+    console.log('update codeSpace')
+    updateWorkSpace(id, workSpace)
+  }, [workSpace])
+
 
 //<--------------------HANDLERS------------------------>
   const onClickCodeButton = () => {
-    dispatch(addCodePanel({id: _uniqueId()}))
+    dispatch(addCodePanel({id: Date.now()}))
   }
 
   const onClickWindowButton = () => {
-    dispatch(addIframe({id: _uniqueId()}))
+    dispatch(addIframe({id: Date.now()}))
   }
 
   const onClickTextButon = () => {
-    dispatch(addText({id: _uniqueId()}))
+    dispatch(addText({id: Date.now()}))
   }
 
 

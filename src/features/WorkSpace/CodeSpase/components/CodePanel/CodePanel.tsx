@@ -25,9 +25,9 @@ interface PropsType {
 const CodePanel: React.FC<PropsType> = ({item, first, end}) => {
 
   const dispatch = useTypeDispatch()
-  const [input, setInput] = useState<string | undefined>('')
+  const [input, setInput] = useState<string | undefined>(item.content)
   const [isIframe, setIsIframe] = useState(false)
-
+  //Сбор всего кода с предыдущих CodePanel
   const cumulativeCode = useTypeSelector(state => {
     const workSpace = state.code.workSpace
     return getCumulativeCode(workSpace, item)
@@ -36,14 +36,12 @@ const CodePanel: React.FC<PropsType> = ({item, first, end}) => {
   const isMoveUp = !first
   const isMoveDown = !end
 
-  console.log(cumulativeCode)
 
 
 //<--------------------USE EFFECT---------------------->
   useEffect(() => {
-    
+    //Обновляем контент через 0.75 сек, если за это время не произошло изменений
     const timer = setTimeout(() => {
-      console.log('timer')
       dispatch(updateContent({id: item.id, content: input}))
     }, 750)
 

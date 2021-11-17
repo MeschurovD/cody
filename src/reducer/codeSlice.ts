@@ -5,19 +5,23 @@ import { addSpace } from "./spacesSlice";
 
 const initialState: InitialStateType = {
   id: 0,
-  workSpace: [
-    {
-      id: _uniqueId(),
-      type: 'code',
-      content: ''
-    }
-  ]
+  loading: true,
+  workSpace: []
 }
 
 const codeSlice = createSlice({
   name: 'code',
   initialState,
   reducers: {
+    loadSpace(state, action) {
+      state.id = action.payload.id
+      state.workSpace = action.payload.workSpace
+      state.loading = false
+    },
+    updateLoading(state) {
+      state.loading = true
+      state.workSpace = []
+    },
     newSpace(state, action) {
       state.id = action.payload.id
       state.workSpace = [{
@@ -38,7 +42,7 @@ const codeSlice = createSlice({
       state.workSpace.push({
         id: action.payload.id,
         type: 'iframe',
-        content: undefined
+        content: ''
       })
     },
     addText(state, action) {
@@ -90,29 +94,39 @@ const codeSlice = createSlice({
       const index = state.workSpace.findIndex(item => item.id === action.payload.id)
       //@ts-ignore
       state.workSpace[index].content = action.payload.content
+    },
+    clearWorkSpace(state) {
+      state = {
+        id: 0,
+        loading: true,
+        workSpace: []
+      }
     }
   },
-  extraReducers: (builder) => {
-    builder
-    .addCase(addSpace, (state, action: any) => {
-      state.id = action.payload.id
-      state.workSpace = [{
-        id: _uniqueId(),
-        type: 'code',
-        content: ''
-      }]
-    })
-  }
+  // extraReducers: (builder) => {
+  //   builder
+  //   .addCase(addSpace, (state, action: any) => {
+  //     state.id = action.payload.id
+  //     state.workSpace = [{
+  //       id: _uniqueId(),
+  //       type: 'code',
+  //       content: ''
+  //     }]
+  //   })
+  // }
 })
 
 export const {
+  loadSpace,
+  updateLoading,
   addCodePanel,
   addIframe,
   addText,
   updateContent,
   moveUp,
   moveDown,
-  deleteItem
+  deleteItem,
+  clearWorkSpace
 } = codeSlice.actions
 
 export default codeSlice.reducer

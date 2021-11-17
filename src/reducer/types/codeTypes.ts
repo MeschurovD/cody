@@ -11,5 +11,6 @@ interface IframeType {
 
 export interface InitialStateType {
   id: number
+  loading: boolean
   workSpace: CodePanelType[]
 }
