@@ -2,6 +2,7 @@
 //<--------------------IMPORT-------------------------->
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import CheckButton from '../../../../components/CheckButton/CheckButton';
 import { deleteWorkSpace, getWorkSpace } from '../../../../Firebase/actions/firestoreAction';
 import { useTypeDispatch } from '../../../../hooks/redux';
 import { changeName, removeSpace } from '../../../../reducer/spacesSlice';
@@ -23,6 +24,8 @@ const SpaceCard: React.FC<PropsType> = ({ item }) => {
   const dispatch = useTypeDispatch()
   const [name, setName] = useState(item.name)
 
+  const deleteIcon = `bx bxs-trash ${styles.delete_button}`
+
 
   //<--------------------HANDLERS------------------------>
   const onClickChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,28 +36,38 @@ const SpaceCard: React.FC<PropsType> = ({ item }) => {
     dispatch(changeName({ id: item.id, name }))
   }
 
-  const onClickRemove = () => {
+  const onClickRemove = (event: React.MouseEvent<HTMLElement>) => {
     dispatch(removeSpace({ id: item.id }))
     deleteWorkSpace(String(item.id))
   }
 
   const onClickWorkSpace = () => {
     console.log('id ' + item.id)
-    
   }
 
 
   //<--------------------JSX COMPONENT------------------->
   return (
+
     <div className={styles.card}>
-      <input type="text" value={name} onChange={onClickChangeName} onBlur={saveName} />
-      <NavLink to={`/work_space/${item.id}`}>
-        <div onClick={onClickWorkSpace}>
-          `{item.name} {item.id}`
+      <div className={styles.wrapper}>
+        <div className={styles.header}>
+          <input type="text" value={name} onChange={onClickChangeName} onBlur={saveName} />
+          <CheckButton className={styles.delete} onClickYesFunction={onClickRemove} text='Удалить' icon='bx bxs-trash' >
+            {/* <div className={styles.delete}> */}
+              <i className={deleteIcon}></i>
+            {/* </div> */}
+          </CheckButton>
         </div>
-      </NavLink>
-      <button onClick={onClickRemove} >Remove</button>
+        <NavLink onClick={onClickWorkSpace} className={styles.nav} to={`/work_space/${item.id}`}>
+          <div className={styles.go}>
+            <i className='bx bx-play' ></i>
+            <span>Начать</span>
+          </div>
+        </NavLink>
+      </div>
     </div>
+
   );
 };
 

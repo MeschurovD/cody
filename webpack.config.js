@@ -15,6 +15,7 @@ const resourcesLoader = {
       path.resolve(__dirname, 'src/style/_variables.scss'),
       path.resolve(__dirname, 'src/style/_base.scss'),
       path.resolve(__dirname, 'src/style/_shadow.scss'),
+      path.resolve(__dirname, 'src/style/_mixin.scss'),
     ]
   }
 }

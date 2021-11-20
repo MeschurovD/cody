@@ -2,6 +2,7 @@ import Monaco, { OnChange } from '@monaco-editor/react'
 import prettier from 'prettier'
 import parser from 'prettier/parser-babel'
 import { useRef } from 'react'
+import { useTypeSelector } from '../../hooks/redux'
 // import codeshift from 'jscodeshift'
 // import Highlighter from 'monaco-jsx-highlighter'
 
@@ -20,7 +21,9 @@ const CodeEditor: React.FC<PropsType> = ({ initialValue, onChange }) => {
 
   //<--------------------DATA AND STATES----------------->
   const editorRef = useRef<any>()
-
+  const themeDark = useTypeSelector(state => state.spaces.themeDark)
+  const themeStyle = themeDark ? 'vs-dark' : 'vs'
+ 
 
   // const highlighter = new Highlighter(
   //   monaco,
@@ -60,7 +63,7 @@ const CodeEditor: React.FC<PropsType> = ({ initialValue, onChange }) => {
       value={initialValue}
       onChange={onChangeInput}
       language='javascript'
-      theme='vs-dark'
+      theme={themeStyle}
 
       options={{
         wordWrap: 'on',

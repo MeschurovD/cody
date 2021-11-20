@@ -1,0 +1,36 @@
+.main {
+  width: clamp(40rem, 100%, 100rem);
+  margin: auto;
+
+  
+
+  .spaces {
+    width: 95%;
+    margin: auto;
+
+    .board_header {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding: 1rem;
+      gap: 1rem;
+
+      .title_icon {
+        font-size: 2rem;
+        align-items: center;
+      }
+
+      .title {
+        font-size: 3.6rem;
+      }
+    }
+
+
+    .content {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+      margin-top: 2rem;
+      gap: 10rem;
+    }
+  }
+}

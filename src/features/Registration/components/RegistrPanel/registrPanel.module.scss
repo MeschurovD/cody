@@ -1,0 +1,38 @@
+@mixin content {
+  width: 80%;
+  margin: auto;
+}
+
+.panel {
+  @include board;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 2rem;
+  padding: 2rem 0;
+
+  .title {
+    font-size: 2rem
+  }
+
+  .input {
+    @include content;
+    border: none;
+    border-bottom: 1px solid red;
+
+    &:focus-visible {
+      outline: none;
+      border-bottom: 1px solid greenyellow;
+    }
+  }
+
+  .registr_button {
+    @include content;
+  }
+
+  .login_button {
+    @include content;
+  }
+}
+
+

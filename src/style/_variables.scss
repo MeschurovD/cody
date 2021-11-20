@@ -1,7 +1,15 @@
 $base-color: rgb(var(--base-color));
 
-$bg-1: var(--bg-1);
-$bg-2: var(--bg-2);
+$text-color: rgb(var(--text-color-1));
+
+$bg-1: rgb(var(--bg-1));
+$bg-2: rgb(var(--bg-2));
+
+$blackout-color: rgba(var(--blackout-color), .2);
+
+$icon-color: rgb(var(--icon-color));
+$icon-button-bg-1: rgb(var(--icon-button-bg-1));
+$icon-button-bg-2: rgb(var(--icon-button-bg-2));
 
 $shadow-1-color: var(--shadow-1-color);
 $shadow-2-color: var(--shadow-2-color);

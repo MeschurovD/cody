@@ -1,15 +1,24 @@
+
+//<--------------------IMPORT-------------------------->
 import React, { useState } from 'react';
 import { getLoginAction, getRegistrationAction } from '../../../../Firebase/actions/authAction';
 import { useTypeDispatch, useTypeSelector } from '../../../../hooks/redux';
+import styles from './registrPanel.module.scss'
 
+
+//<--------------------COMPONENT----------------------->
 const RegistrPanel: React.FC = () => {
 
+
+//<--------------------DATA AND STATES----------------->
   const dispatch = useTypeDispatch()
   const isAuth = useTypeSelector(state => state.auth.isAuth)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+
+//<--------------------HANDLERS------------------------>
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value)
   }
@@ -30,15 +39,23 @@ const RegistrPanel: React.FC = () => {
     }
   }
 
+  const onClickTest = () => {
+    setEmail('test1@gmail.com')
+    setPassword('test12345')
+  }
+
+
+//<--------------------JSX COMPONENT------------------->
   return (
-    <div>
-      <input type='email' placeholder='email' value={email} onChange={onChangeEmail} />
-      <input type='password' placeholder='password' value={password} onChange={onChangePassword} />
-      <button onClick={onClickRegistration} >registration</button>
-      <button onClick={onClickLogin} >Login</button>
-      <div>
-        {isAuth ? 'ok' : 'not ok'}
-      </div>
+    <div className={styles.panel}>
+      <span className={styles.title}>Вход</span>
+      <input type='email' placeholder='email' value={email} onChange={onChangeEmail} className={styles.input} />
+      <input type='password' placeholder='password' value={password} onChange={onChangePassword} className={styles.input} />
+      <div onClick={onClickTest}>Test</div>
+      <button className={styles.login_button} onClick={onClickLogin} >Login</button>
+      <span>ИЛИ</span>
+      <button className={styles.registr_button} onClick={onClickRegistration} >registration</button>
+      
     </div>
   );
 };

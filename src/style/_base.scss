@@ -16,18 +16,29 @@ html {
 }
 
 
+a { 
+  color: inherit; 
+} 
+
 :root {
-  --bg-2: 209, 219, 229;
-  --bg-1: 122, 120, 134;
-  --base-color: 157, 165, 176;
-  --shadow-1-color: 209, 219, 229;
+  --text-color-1: 22, 30, 41;
+  --bg-1: 255, 255, 255;
+  --bg-2: 230, 230, 230;
+  --blackout-color: 1, 1, 1;
+  --icon-color: 230, 230, 230;
+  --icon-button-bg-1: 255, 255, 255;
+  --icon-button-bg-2: 190, 190, 190;
+  // --bg-2: 209, 219, 229;
+  // --bg-1: 122, 120, 134;
+  // --base-color: 157, 165, 176;
+  // --shadow-1-color: 209, 219, 229;
   //--shadow-2-color: #0d2750;
-  --shadow-2-color: 83, 80, 88;
+  // --shadow-2-color: 83, 80, 88;
 
   --border-1: 103, 112, 117;
   --border-2: 83, 92, 97;
-  color: #292d32;
-
+  color: rgb(var(--text-color-1));
+  background-color: rgb(var(--bg-2));
 }
 
 .dark_theme {

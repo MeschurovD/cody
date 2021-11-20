@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { initialStateType } from './types/spacesTypes';
 
 const initialState: initialStateType = {
+  themeDark: false,
   workSpaces: []
 }
 
@@ -14,11 +15,14 @@ const spacesSlice = createSlice({
       state.workSpaces = action.payload.workSpaces.workSpaces
     },
     addSpace(state, action) {
-      state.workSpaces.push({
-        id: action.payload.id,
-        name: action.payload.name,
-        codeCount: 1
-      })
+      state.workSpaces = [
+        {
+          id: action.payload.id,
+          name: action.payload.name,
+          codeCount: 1
+        },
+        ...state.workSpaces
+      ]
     },
     changeName(state, action) {
       const index = state.workSpaces.findIndex(item => item.id === action.payload.id)
@@ -30,9 +34,18 @@ const spacesSlice = createSlice({
     },
     cleaningWorkSpaces(state) {
       state.workSpaces = []
+    },
+    changeThemeAction(state) {
+      state.themeDark = !state.themeDark
     }
   }
 })
 
-export const { addSpace, removeSpace, changeName, allSpaces, cleaningWorkSpaces } = spacesSlice.actions
+export const { addSpace,
+  removeSpace,
+  changeName,
+  allSpaces,
+  cleaningWorkSpaces,
+  changeThemeAction
+} = spacesSlice.actions
 export default spacesSlice.reducer

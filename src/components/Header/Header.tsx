@@ -1,16 +1,25 @@
+
+//<--------------------IMPORT-------------------------->
 import React from 'react';
-import { useHistory } from 'react-router-dom'
+import { NavLink, Redirect, useHistory } from 'react-router-dom'
 import { useTypeDispatch } from '../../hooks/redux';
 import { removeLogin } from '../../reducer/authSlice';
 import { clearWorkSpace, updateLoading } from '../../reducer/codeSlice';
-import { cleaningWorkSpaces } from '../../reducer/spacesSlice';
+import { changeThemeAction, cleaningWorkSpaces } from '../../reducer/spacesSlice';
+import CheckButton from '../CheckButton/CheckButton';
 import styles from './header.module.scss'
 
+
+//<--------------------COMPONENT----------------------->
 const Header: React.FC = () => {
 
+
+  //<--------------------DATA AND STATES----------------->
   let history = useHistory()
   const dispatch = useTypeDispatch()
 
+
+  //<--------------------HANDLERS------------------------>
   const redirectToMain = () => {
     history.push('/main')
     dispatch(updateLoading())
@@ -18,6 +27,8 @@ const Header: React.FC = () => {
 
   const changeTheme = () => {
     document.body.classList.toggle(styles.dark_theme)
+    dispatch(changeThemeAction())
+
   }
 
   const onClickLogOut = () => {
@@ -29,14 +40,23 @@ const Header: React.FC = () => {
     }, 1000)
   }
 
+
+  //<--------------------JSX COMPONENT------------------->
   return (
     <div className={styles.header}>
       <div className={styles.left}>
         <button onClick={redirectToMain}>menu</button>
       </div>
       <div className={styles.right}>
-        <button onClick={changeTheme}>theme</button>
-        <button onClick={onClickLogOut}>log out</button>
+        <div className={styles.theme} onClick={changeTheme}>
+          <i className='bx bx-bulb' ></i>
+        </div>
+        <CheckButton onClickYesFunction={onClickLogOut} text='Выйти' icon='bx bx-log-out' >
+          <div className={styles.out}>
+            <i className='bx bx-log-out'></i>
+            <span>Log out</span>
+          </div>
+        </CheckButton>
       </div>
     </div>
   );

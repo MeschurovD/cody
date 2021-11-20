@@ -20,10 +20,10 @@ interface PropsType {
 
 
 //<--------------------COMPONENT----------------------->
-const IframeWindow: React.FC<PropsType> = ({item, first, end}) => {
+const IframeWindow: React.FC<PropsType> = ({ item, first, end }) => {
 
 
-//<--------------------DATA AND STATES----------------->
+  //<--------------------DATA AND STATES----------------->
   const cumulativeCode = useTypeSelector(state => {
     const workSpace = state.code.workSpace
     return getCumulativeCode(workSpace, item)
@@ -33,12 +33,14 @@ const IframeWindow: React.FC<PropsType> = ({item, first, end}) => {
   const isMoveDown = !end
 
 
-//<--------------------JSX COMPONENT------------------->
+  //<--------------------JSX COMPONENT------------------->
   return (
-      <HeaderPanel item={item} isMoveUp={isMoveUp} isMoveDown={isMoveDown}>
-        {/* <ButtonsMenu id={item.id} isRemove={true} isMoveUp={isMoveUp} isMoveDown={isMoveDown} /> */}
-        <Iframe code={cumulativeCode.join('\n')}/>
-      </HeaderPanel>
+    <HeaderPanel item={item} isMoveUp={isMoveUp} isMoveDown={isMoveDown}>
+      {/* <ButtonsMenu id={item.id} isRemove={true} isMoveUp={isMoveUp} isMoveDown={isMoveDown} /> */}
+      <div className={styles.iframe}>
+        <Iframe code={cumulativeCode.join('\n')} />
+      </div>
+    </HeaderPanel>
 
   );
 };

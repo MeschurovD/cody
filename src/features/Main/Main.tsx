@@ -1,3 +1,5 @@
+
+//<--------------------IMPORT-------------------------->
 import React, { useEffect, useLayoutEffect } from 'react';
 import Header from '../../components/Header/Header';
 import { useTypeDispatch, useTypeSelector } from '../../hooks/redux';
@@ -7,21 +9,28 @@ import { addSpace } from '../../reducer/spacesSlice';
 import SpaceCard from './components/SpaceCard/SpaceCard';
 import IsAuth from '../../components/IsAuth/IsAuth';
 import { getWorkSpacesAction, setWorkSpace, setWorkSpacesAction } from '../../Firebase/actions/firestoreAction';
-import { changeLogin } from '../../reducer/authSlice';
 
-const Main = () => {
 
+//<--------------------COMPONENT----------------------->
+const Main: React.FC = () => {
+
+
+  //<--------------------DATA AND STATES----------------->
   const dispatch = useTypeDispatch()
 
   const spaces = useTypeSelector(state => state.spaces.workSpaces)
   const { id, isLogin } = useTypeSelector(state => state.auth)
-  console.log(isLogin)
-  console.log(spaces)
 
+  const WorkSpaces = spaces.map(item => {
+    return <SpaceCard item={item} key={item.id} />
+  })
+
+  const titleIcon = `bx bxs-dashboard ${styles.title_icon}`
+
+  //<--------------------USE EFFECT---------------------->
   useLayoutEffect(() => {
     if (isLogin && id) {
       console.log('Запрос')
-      console.log(id)
       getWorkSpacesAction(id, dispatch)
     }
   }, [])
@@ -34,26 +43,32 @@ const Main = () => {
 
   }, [spaces])
 
-  const WorkSpaces = spaces.map(item => {
-    return <SpaceCard item={item} key={item.id} />
-  })
 
+
+
+  //<--------------------HANDLERS------------------------>
   const onClickNewSpace = () => {
     const id = String(Date.now() + lodash.random(10))
     console.log(id)
-    dispatch(addSpace({ id, name: `Board-${lodash.uniqueId()}` }))
+    dispatch(addSpace({ id, name: `Доска-${lodash.uniqueId()}` }))
     setWorkSpace(id)
   }
 
+
+  //<--------------------JSX COMPONENT------------------->
   return (
     <IsAuth>
       <div className={styles.main}>
         <Header />
-        <div className={styles.add}>
-          <button onClick={onClickNewSpace}>new space</button>
-        </div>
+      
         <div className={styles.spaces}>
-          {WorkSpaces}
+          <div className={styles.board_header}>
+            <div className={styles.title}>Доски</div>
+            <button onClick={onClickNewSpace}>new space</button>
+          </div>
+          <div className={styles.content}>
+            {WorkSpaces}
+          </div>
         </div>
       </div>
     </IsAuth>

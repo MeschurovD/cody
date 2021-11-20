@@ -1,0 +1,13 @@
+@mixin button {
+  border-radius: 50%;
+  
+}
+
+@mixin button-text {
+  border-radius: 2rem;
+}
+
+@mixin board {
+  border-radius: 2rem;
+  background-color: $bg-1;
+}

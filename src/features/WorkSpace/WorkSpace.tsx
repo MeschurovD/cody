@@ -40,7 +40,9 @@ const WorkSpace: React.FC = () => {
           )
           : (
             <div className={styles.work_space}>
-              <Header />
+              <div className={styles.header}>
+                <Header />
+              </div>
               <InfoPanel id={Number(params.id)} />
               <div className={styles.code_space}>
                 <CodeSpace id={params.id} />

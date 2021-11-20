@@ -21,12 +21,10 @@ const HeaderPanel: React.FC<PropsType> = ({ children, item, isMoveUp, isMoveDown
     setIsCollapse(!isCollapse)
   }
  
-  console.log(styles)
   return (
     <div className={styles.panel}>
       <div className={styles.header_panel}>
         <button onClick={onClickCollapse}>collapse</button>
-        <input type="text" />
         <ButtonsMenu id={item.id} isRemove={true} isMoveUp={isMoveUp} isMoveDown={isMoveDown} />
       </div>
       <div className={bodyStyles}>

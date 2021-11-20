@@ -1,0 +1,49 @@
+
+  .card {
+    @include board;
+    
+    padding: 2rem;
+
+    &:hover .wrapper > .header > .delete {
+      display: inline-block;
+      font-size: 2rem;
+    }
+
+    .wrapper {
+      .header {
+        display: flex;
+        justify-content: space-between;
+
+        input {
+          margin: 1rem 0;
+          background: inherit;
+          border: none;
+          font-size: 2rem;
+          width: 70%;
+        }
+
+        input:focus-visible {
+          border: none;
+          outline: none;
+        }
+
+        .delete {
+          display: none;
+          margin: auto 0;
+          
+          .delete_button {
+            font-size: 2rem;
+            cursor: pointer;
+          }
+        }
+
+      }
+      .nav {
+        text-decoration: none;
+        .go {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+

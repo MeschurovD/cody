@@ -5,5 +5,6 @@ export interface SpaceType {
 }
 
 export interface initialStateType {
+  themeDark: boolean
   workSpaces: SpaceType[]
 }
