@@ -1,5 +1,5 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword  } from 'firebase/auth'
-import { addLogin } from '../../reducer/authSlice'
+import { addLogin, setError } from '../../reducer/authSlice'
 import { auth } from '../firebase'
 import { getWorkSpacesAction, setWorkSpacesAction } from './firestoreAction'
 
@@ -23,7 +23,10 @@ export const getRegistrationAction: GetAuthType = async (email, password, dispat
     sessionStorage.setItem('user', JSON.stringify(data))
     dispatch(addLogin(data))
   } catch (error) {
-    console.log(error)
+     //@ts-ignore
+     const errorCode = error.code
+     console.log(errorCode)
+     dispatch(setError({error: errorCode}))
   }
 }
 
@@ -37,6 +40,9 @@ export const getLoginAction: GetAuthType = async (email, password, dispatch) => 
     sessionStorage.setItem('user', JSON.stringify(data))
     dispatch(addLogin(data))
   } catch (error) {
-    console.log(error)
+    //@ts-ignore
+    const errorCode = error.code
+    console.log(errorCode)
+    dispatch(setError({error: errorCode}))
   }
 }

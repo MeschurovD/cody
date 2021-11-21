@@ -13,6 +13,7 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 
@@ -20,7 +21,9 @@ a {
   color: inherit; 
 } 
 
+
 :root {
+ 
   --text-color-1: 22, 30, 41;
   --bg-1: 255, 255, 255;
   --bg-2: 230, 230, 230;
@@ -28,6 +31,9 @@ a {
   --icon-color: 230, 230, 230;
   --icon-button-bg-1: 255, 255, 255;
   --icon-button-bg-2: 190, 190, 190;
+  --blue-color: 67, 87, 242;
+  --icon-theme-bg: 33, 45, 62;
+  --icon-theme-color: var(--icon-color);
   // --bg-2: 209, 219, 229;
   // --bg-1: 122, 120, 134;
   // --base-color: 157, 165, 176;
@@ -42,20 +48,19 @@ a {
 }
 
 .dark_theme {
-  --bg-2: 93, 101, 103;
-  //--bg-2: 53, 39, 52;
-  --bg-1: 73, 71, 73;
-  --base-color: 72, 71, 77;
-  --shadow-1-color: 113, 121, 123;
-  //--shadow-2-color: 41, 45, 50;
-  --shadow-2-color: 41, 45, 50;
+  --text-color-1: 255, 255, 255;
+  --bg-1: 22, 30, 41;
+  --bg-2: 33, 45, 62;
+  --blackout-color: 255, 255, 255;
+  --icon-color: var(--text-color-1);
+  --icon-button-bg-1: var(--bg-1);
+  --icon-button-bg-2: var(--bg-2);
+  --blue-color: 67, 87, 242;
+  --icon-theme-bg: 255, 255, 255;
+  --icon-theme-color: var(--bg-2);
 
-  //--border-1: 103, 112, 117;
-  --border-1: 73, 71, 73;
-  --border-2: 33, 19, 32;
-
-  --button-color: rgb(35, 209, 234);
-  color: #f0f0f3;
+  color: rgb(var(--text-color-1));
+  background-color: rgb(var(--bg-2));
 }
 
 @mixin work-space-container {

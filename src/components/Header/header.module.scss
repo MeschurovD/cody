@@ -1,6 +1,7 @@
 .header {
   display: flex;
   justify-content: space-between;
+  color: $text-color;
 
   .left {
     
@@ -16,8 +17,8 @@
       cursor: pointer;
       align-items: center;
       margin: auto;
-      background-color: $icon-button-bg-2;
-      color: $icon-color;
+      background-color: $icon-theme-bg;
+      color: $icon-theme-color;
       padding: .5rem;
       border-radius: 50%;
 
@@ -42,7 +43,17 @@
       background-color: $icon-button-bg-1;
       border-radius: 3rem;
       padding: 1rem 2rem 1rem 1rem;
+      border: 1px solid $icon-button-bg-1;
 
+      
+      &:hover {
+        transition: all .2s;
+        border: 1px solid $blue-color;
+      }
+      &:hover i {
+        transition: all .2s;
+        background-color: $blue-color;
+      }
       i {
         font-size: 2.6rem;
         padding: .5rem;

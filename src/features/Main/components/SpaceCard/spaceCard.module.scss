@@ -5,6 +5,7 @@
     padding: 2rem;
 
     &:hover .wrapper > .header > .delete {
+      margin-left: 1rem;
       display: inline-block;
       font-size: 2rem;
     }
@@ -12,18 +13,23 @@
     .wrapper {
       .header {
         display: flex;
-        justify-content: space-between;
 
         input {
+          flex-basis: 85%;
           margin: 1rem 0;
+          color: $text-color;
           background: inherit;
           border: none;
           font-size: 2rem;
           width: 70%;
+          border-bottom: 1px solid $bg-1;
+          transition: all .3s;
         }
 
         input:focus-visible {
-          border: none;
+          border-bottom: 1px solid $blue-color;
+          transform: scale(1.05);
+          transition: all .3s;
           outline: none;
         }
 
@@ -34,10 +40,16 @@
           .delete_button {
             font-size: 2rem;
             cursor: pointer;
+
+            &:hover {
+              transition: .2s;
+              transform: scale(1.15);
+            }
           }
         }
 
       }
+
       .nav {
         text-decoration: none;
         .go {

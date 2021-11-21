@@ -1,13 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { allSpaces } from './spacesSlice';
-import { AuthType } from './types/authTypes';
+import { AuthType, ErrorCode } from './types/authTypes';
 
 const initialState: AuthType = {
   email: '',
   id: '',
   token: '',
   isAuth: false,
-  isLogin: true
+  isLogin: true,
+  errorCode: ErrorCode.NOT_ERROR
 }
 
 const authSlice = createSlice({
@@ -22,6 +23,10 @@ const authSlice = createSlice({
       action.payload.isLogin
         ? state.isLogin = true
         : state.isLogin = true
+      state.errorCode = ErrorCode.NOT_ERROR
+    },
+    setError(state, action) {
+      state.errorCode = action.payload.error
     },
     removeLogin(state) {
       state.email = ''
@@ -35,11 +40,11 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    .addCase(allSpaces, (state) => {
-      state.isLogin = false
-    })
+      .addCase(allSpaces, (state) => {
+        state.isLogin = false
+      })
   }
 })
 
-export const { addLogin, removeLogin, changeLogin } = authSlice.actions
+export const { addLogin, removeLogin, changeLogin, setError } = authSlice.actions
 export default authSlice.reducer
