@@ -55,14 +55,18 @@ const SpaceCard: React.FC<PropsType> = ({ item }) => {
           <input type="text" value={name} onChange={onClickChangeName} onBlur={saveName} />
           <CheckButton className={styles.delete} onClickYesFunction={onClickRemove} text='Удалить' icon='bx bxs-trash' >
             {/* <div className={styles.delete}> */}
-              <i className={deleteIcon}></i>
+            <i className={deleteIcon}></i>
             {/* </div> */}
           </CheckButton>
         </div>
         <NavLink onClick={onClickWorkSpace} className={styles.nav} to={`/work_space/${item.id}`}>
           <div className={styles.go}>
-            <i className='bx bx-play' ></i>
-            <span>Начать</span>
+            <div className={styles.go_icon}>
+              <i className='bx bx-play' ></i>
+            </div>
+            <div className={styles.text}>
+              Начать
+            </div>
           </div>
         </NavLink>
       </div>

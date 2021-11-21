@@ -26,6 +26,7 @@ const Main: React.FC = () => {
   })
 
   const titleIcon = `bx bxs-dashboard ${styles.title_icon}`
+  const titleStyle = isLogin ? `${styles.title} ${styles.loader}` : styles.title
 
   //<--------------------USE EFFECT---------------------->
   useLayoutEffect(() => {
@@ -60,11 +61,16 @@ const Main: React.FC = () => {
     <IsAuth>
       <div className={styles.main}>
         <Header />
-      
+
         <div className={styles.spaces}>
           <div className={styles.board_header}>
-            <div className={styles.title}>Доски</div>
-            <button onClick={onClickNewSpace}>new space</button>
+            <div className={titleStyle}>Доски</div>
+            <div className={styles.new_board} onClick={onClickNewSpace}>
+              <i className='bx bx-plus-medical'></i>
+              <span>
+                Новая доска
+              </span>
+            </div>
           </div>
           <div className={styles.content}>
             {WorkSpaces}
