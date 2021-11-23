@@ -45,7 +45,10 @@ const Header: React.FC = () => {
   return (
     <div className={styles.header}>
       <div className={styles.left}>
-        <button onClick={redirectToMain}>menu</button>
+        <div className={styles.logo} onClick={redirectToMain}>
+          <i className='bx bxs-copyright'></i>
+          <span>ody</span>
+        </div>
       </div>
       <div className={styles.right}>
         <div className={styles.theme} onClick={changeTheme}>

@@ -44,8 +44,6 @@ const userWorkSpace = 'userworkspace'
 
 export const setWorkSpacesAction: SetWorkSpacesType = async (workSpaces, id) => {
   const docRef = doc(db, userWorkSpaces, id)
-  console.log(workSpaces)
-  console.log(docRef)
   await setDoc(docRef, {workSpaces})
 }
 
@@ -63,10 +61,9 @@ export const getWorkSpacesAction: GetWorkSpacesType = async (id, dispatch) => {
 }
 
 export const setWorkSpace: SetWorkSpace = async (id) => {
-  console.log('setWorkSpace')
   const workSpace = [
     {
-      id: 0,
+      id: Date.now(),
       type: 'code',
       content: ''
     }
@@ -76,12 +73,10 @@ export const setWorkSpace: SetWorkSpace = async (id) => {
 }
 
 export const getWorkSpace: GetWorkSpace = async (id, dispatch) => {
-  console.log('id: ' + id)
   const docRef = doc(db, userWorkSpace, id)
   try {
     const workSpace = await getDoc(docRef)
     const data = workSpace.data()
-    console.log(data)
     dispatch(loadSpace(data))
   } catch (error) {
     console.log(error)

@@ -1,5 +1,5 @@
 export interface SpaceType {
-  id: number
+  id: string
   name: string
   codeCount: number
 }

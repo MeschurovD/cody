@@ -50,7 +50,6 @@ const Main: React.FC = () => {
   //<--------------------HANDLERS------------------------>
   const onClickNewSpace = () => {
     const id = String(Date.now() + lodash.random(10))
-    console.log(id)
     dispatch(addSpace({ id, name: `Доска-${lodash.uniqueId()}` }))
     setWorkSpace(id)
   }

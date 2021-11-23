@@ -1,0 +1,18 @@
+.info {
+  margin: 2rem max(1rem, 3vw) 2rem;
+  font-size: 3rem;
+  
+
+  input {
+    border: none;
+    font-size: 3rem;
+    background-color: inherit;
+    border-bottom: 1px solid $bg-2;
+    color: $text-color;
+
+    &:focus-visible {
+      outline: none;
+      border-bottom: 1px solid $blue-color;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.button_menu {
+  display: flex;
+  gap: 1rem;
+  font-size: 3rem;
+  
+  i {
+    border: 1px solid $bg-1;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  i:hover {
+    border: 1px solid $blue-color;
+  }
+}

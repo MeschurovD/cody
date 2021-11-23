@@ -1,16 +1,23 @@
+
+//<--------------------IMPORT-------------------------->
 import React, { useState } from 'react';
 import styles from './checkButton.module.scss'
 
+
+//<--------------------TYPE---------------------------->
 interface PropsType {
   onClickYesFunction: Function
   icon: string
   text: string
   className?: string
-
 }
 
+
+//<--------------------COMPONENT----------------------->
 const CheckButton: React.FC<PropsType> = ({ children, onClickYesFunction, className, icon, text }) => {
 
+
+//<--------------------DATA AND STATES----------------->
   const [blackout, setBlackout] = useState(false)
 
   const mainStyle = `${styles.button} ${className}`
@@ -18,14 +25,13 @@ const CheckButton: React.FC<PropsType> = ({ children, onClickYesFunction, classN
   const blackoutStyle = blackout ? styles.blackout : ''
   const yesStyle = `${icon} ${styles.yes}`
 
-  console.log(blackout)
 
+//<--------------------HANDLERS------------------------>
   const onClickButton = () => {
     setBlackout(true)
   }
 
   const onClickNotButton = () => {
-    console.log('no')
     setBlackout(!blackout)
   }
 
@@ -37,6 +43,8 @@ const CheckButton: React.FC<PropsType> = ({ children, onClickYesFunction, classN
     onClickYesFunction()
   }
 
+
+//<--------------------JSX COMPONENT------------------->
   return (
     <>
       <div onClick={onClickButton} className={mainStyle}>

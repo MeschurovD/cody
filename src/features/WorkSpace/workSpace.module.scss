@@ -1,9 +1,7 @@
 .work_space {
-  //@include work-space-container;
-  // min-height: 100vh;
-  // width: 100%;
-  width: clamp(40rem, 100vw, 140rem);
+  width: clamp(40rem, 97vw, 140rem);
   margin: auto;
+  height: 100%;
 
   display: flex;
   flex-direction: column;

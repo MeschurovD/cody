@@ -24,14 +24,20 @@ interface PropsType {
 //<--------------------COMPONENT----------------------->
 const CodePanel: React.FC<PropsType> = ({item, first, end}) => {
 
+
+//<--------------------DATA AND STATES----------------->
   const dispatch = useTypeDispatch()
+  
   const [input, setInput] = useState<string | undefined>(item.content)
   const [isIframe, setIsIframe] = useState(false)
+
   //Сбор всего кода с предыдущих CodePanel
   const cumulativeCode = useTypeSelector(state => {
     const workSpace = state.code.workSpace
     return getCumulativeCode(workSpace, item)
   })
+
+  const titleIframe = isIframe ? 'Код' : 'Окно'
 
   const isMoveUp = !first
   const isMoveDown = !end
@@ -75,8 +81,7 @@ const CodePanel: React.FC<PropsType> = ({item, first, end}) => {
     <HeaderPanel item={item} isMoveUp={isMoveUp} isMoveDown={isMoveDown} >
       <div className={styles.control_panel}>
         {/* <input type="text" /> */}
-        <button onClick={onClickIframe}>iframe</button>
-        {/* <ButtonsMenu id={item.id} isRemove={true} isMoveUp={isMoveUp} isMoveDown={isMoveDown} /> */}
+        <button className={styles.iframe_button} onClick={onClickIframe}>{titleIframe}</button>
       </div>
       <div className={styles.code_space}>
         {codeSpace}

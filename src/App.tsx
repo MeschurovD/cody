@@ -11,7 +11,6 @@ const App: React.FC = () => {
 
   const isReg = true
   const session = sessionStorage.getItem('board')
-  console.log(session)
 
   useEffect(() => {
     startService()

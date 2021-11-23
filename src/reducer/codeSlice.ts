@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CodePanelType, InitialStateType } from "./types/codeTypes";
+import { CodePanelType, InitialStateType, PanelType } from "./types/codeTypes";
 import _uniqueId from 'lodash/uniqueId'
 import { addSpace } from "./spacesSlice";
 
@@ -26,14 +26,14 @@ const codeSlice = createSlice({
       state.id = action.payload.id
       state.workSpace = [{
         id: _uniqueId(),
-        type: 'code',
+        type: PanelType.CODE,
         content: ''
       }]
     },
     addCodePanel(state, action) {
       state.workSpace.push({
         id: action.payload.id,
-        type: 'code',
+        type: PanelType.CODE,
         content: ''
       })
 
@@ -41,16 +41,32 @@ const codeSlice = createSlice({
     addIframe(state, action) {
       state.workSpace.push({
         id: action.payload.id,
-        type: 'iframe',
+        type: PanelType.IFRAME,
         content: ''
       })
     },
     addText(state, action) {
       state.workSpace.push({
         id: action.payload.id,
-        type: 'text',
+        type: PanelType.TEXT,
         content: ''
       })
+    },
+    addItem(state, action) {
+      if (action.payload.afterId && action.payload.afterId !== 0) {
+        const index = state.workSpace.findIndex(item => item.id === action.payload.afterId)
+        state.workSpace.splice(index, 0, {
+          id: action.payload.id,
+          type: action.payload.type,
+          content: ''
+        })
+      } else {
+        state.workSpace.push({
+          id: action.payload.id,
+          type: action.payload.type,
+          content: ''
+        })
+      }
     },
     deleteItem(state, action) {
       const index: number = state.workSpace.findIndex(item => item.id === action.payload.id)
@@ -122,6 +138,7 @@ export const {
   addCodePanel,
   addIframe,
   addText,
+  addItem,
   updateContent,
   moveUp,
   moveDown,

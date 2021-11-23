@@ -4,7 +4,22 @@
   color: $text-color;
 
   .left {
-    
+    display: flex;
+    align-items: center;
+    .logo {
+      font-size: 3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      i {
+        font-size: 3rem;
+      }
+
+      &:hover {
+        color: $blue-color;
+      }
+    }
   }
 
   .right {

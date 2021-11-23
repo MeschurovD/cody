@@ -1,6 +1,6 @@
 
 //<--------------------IMPORT-------------------------->
-import React, { useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { createReactEditorJS } from 'react-editor-js'
 import { CodePanelType } from '../../../../../reducer/types/codeTypes';
 import HeaderPanel from '../HeaderPanel/HeaderPanel';
@@ -8,6 +8,12 @@ import styles from './textEditor.module.scss'
 import './editor.scss'
 import { useTypeDispatch } from '../../../../../hooks/redux';
 import { updateContent } from '../../../../../reducer/codeSlice';
+
+import Quote from '@editorjs/quote'
+import Marker from '@editorjs/marker'
+import CheckList from '@editorjs/checklist'
+import List from '@editorjs/list'
+import Header from '@editorjs/header'
 
 
 //<--------------------TYPE---------------------------->
@@ -31,6 +37,14 @@ const TextEditor: React.FC<PropsType> = ({ item, first, end }) => {
 
   const TextEditor = createReactEditorJS()
 
+  const tools = {
+    quote: Quote,
+    marker: Marker,
+    checklist: CheckList,
+    list: List,
+    header: Header
+  }
+
 
   //<--------------------HANDLERS------------------------>
   const handleInitialize = React.useCallback(async (instance) => {
@@ -49,6 +63,7 @@ const TextEditor: React.FC<PropsType> = ({ item, first, end }) => {
   return (
     <HeaderPanel item={item} isMoveUp={isMoveUp} isMoveDown={isMoveDown}>
       <TextEditor
+        tools={tools}
         data={item.content}
         //maxWidth={300}
         minHeight={10}
@@ -60,4 +75,4 @@ const TextEditor: React.FC<PropsType> = ({ item, first, end }) => {
   );
 };
 
-export default TextEditor;
+export default memo(TextEditor);

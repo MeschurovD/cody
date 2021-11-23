@@ -20,10 +20,8 @@ const WorkSpace: React.FC = () => {
   const params: { id: string } = useParams()
   const dispatch = useTypeDispatch()
   const loading = useTypeSelector(state => state.code.loading)
-  console.log('Loading: ' + loading)
 
   useLayoutEffect(() => {
-    console.log('getWorkSpace')
     if (loading) {
       getWorkSpace(String(params.id), dispatch)
     }
@@ -43,7 +41,7 @@ const WorkSpace: React.FC = () => {
               <div className={styles.header}>
                 <Header />
               </div>
-              <InfoPanel id={Number(params.id)} />
+              <InfoPanel id={params.id} />
               <div className={styles.code_space}>
                 <CodeSpace id={params.id} />
               </div>

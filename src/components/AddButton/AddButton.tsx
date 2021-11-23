@@ -1,22 +1,27 @@
-import React, { MouseEventHandler } from 'react';
 
+//<--------------------IMPORT-------------------------->
+import React, { MouseEventHandler } from 'react';
 import styles from './addButton.module.scss'
 
+
+//<--------------------TYPE---------------------------->
 interface PropsType {
   icon: string
   onClickButton: MouseEventHandler<HTMLDivElement>
 }
 
+
+//<--------------------COMPONENT----------------------->
 const AddButton: React.FC<PropsType> = ({ icon, onClickButton, children }) => {
+
+
+//<--------------------JSX COMPONENT------------------->
   return (
     <div className={styles.button} onClick={onClickButton}>
-      <div className={styles.icon}>
         <i className={icon}></i>
-      </div>
       <div className={styles.title}>
-      {children}
+        {children}
       </div>
-        {/* <span>{children}</span> */}
     </div>
   );
 };
