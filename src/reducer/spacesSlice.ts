@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialStateType } from './types/spacesTypes';
 
+
 const initialState: initialStateType = {
   themeDark: false,
   workSpaces: []
@@ -53,4 +54,5 @@ export const { addSpace,
   cleaningWorkSpaces,
   changeThemeAction
 } = spacesSlice.actions
+
 export default spacesSlice.reducer

@@ -3,8 +3,6 @@
   margin: auto;
   height: 100vh;
 
-  
-
   .spaces {
     width: 100%;
     margin: auto;
@@ -20,16 +18,13 @@
         position: relative;
         font-size: 3.6rem;
         font-weight: 700;
-
-        
       }
 
       .new_board {
-       @include icon-button;
-       gap: 1rem;
+        @include icon-button;
+        gap: 1rem;
       }
     }
-
 
     .content {
       display: grid;
@@ -42,7 +37,7 @@
 
 .loader {
   &::before {
-    content: 'Доски';
+    content: "Доски";
     position: absolute;
     top: 0;
     left: 0;
@@ -52,6 +47,9 @@
   }
 }
 
+
+///////////////////////////
+//KEYFRAMES
 
 @keyframes loading {
   0% {

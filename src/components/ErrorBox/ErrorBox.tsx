@@ -10,18 +10,23 @@ import styles from './errorBox.module.scss'
 //<--------------------COMPONENT----------------------->
 const ErrorBox: React.FC = () => {
 
+
+//<--------------------DATA AND STATES----------------->
   const dispatch = useTypeDispatch()
+
   const errorCode = useTypeSelector(state => state.auth.errorCode)
 
   const [first, setFirst] = useState(true)
-
   const [errorMessage, setErrorMessage] = useState('')
+  
   const errorBoxStyle = first
     ? `${styles.error_box} ${styles.first}`
     : errorMessage
       ? `${styles.error_box} ${styles.active}`
       : `${styles.error_box} ${styles.disable}`
 
+
+//<--------------------USE EFFECT---------------------->
   useEffect(() => {
     if (errorCode === ErrorCode.NOT_ERROR) {
       setErrorMessage('')
@@ -41,6 +46,7 @@ const ErrorBox: React.FC = () => {
   }, [errorCode])
 
 
+  //<--------------------JSX COMPONENT------------------->
   return (
     <div className={errorBoxStyle}>
       <div className={styles.title}>

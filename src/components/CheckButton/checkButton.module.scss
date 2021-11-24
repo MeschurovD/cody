@@ -24,9 +24,9 @@
     right: 0;
     background-color: $bg-1;
     font-size: 2rem;
-    padding: 1rem;
     width: 20rem;
     border-radius: 2rem;
+    padding: 1rem;
     gap: 1rem;
     span {
       margin: auto;
@@ -40,12 +40,12 @@
       .check_button {
         display: flex;
         cursor: pointer;
-        gap: 1rem;
         align-items: center;
         margin: auto;
         background-color: $bg-2;
-        padding: 1rem;
         border-radius: 1rem;
+        padding: 1rem;
+        gap: 1rem;
 
         &:hover .yes {
           color: red;

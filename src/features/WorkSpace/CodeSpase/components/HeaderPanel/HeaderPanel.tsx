@@ -1,6 +1,6 @@
 
 //<--------------------IMPORT-------------------------->
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ButtonsMenu from '../../../../../components/ButtonsMenu/ButtonsMenu';
 import { CodePanelType } from '../../../../../reducer/types/codeTypes';
 import styles from './headerpanel.module.scss'
@@ -18,7 +18,7 @@ interface PropsType {
 const HeaderPanel: React.FC<PropsType> = ({ children, item, isMoveUp, isMoveDown }) => {
 
 
-  //<--------------------DATA AND STATES----------------->
+//<--------------------DATA AND STATES----------------->
   const [isCollapse, setIsCollapse] = useState(false)
 
   const codeIcon = 'bx bx-code-alt'
@@ -43,13 +43,14 @@ const HeaderPanel: React.FC<PropsType> = ({ children, item, isMoveUp, isMoveDown
   if (item.type === 'text') type += textIcon
   if (item.type === 'iframe') type += windowIcon
 
-  //<--------------------HANDLERS------------------------>
+
+//<--------------------HANDLERS------------------------>
   const onClickCollapse = () => {
     setIsCollapse(!isCollapse)
   }
 
 
-  //<--------------------JSX COMPONENT------------------->
+//<--------------------JSX COMPONENT------------------->
   return (
     <div className={styles.panel}>
       <div className={styles.header_panel}>

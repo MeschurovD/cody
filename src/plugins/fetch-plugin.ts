@@ -17,26 +17,10 @@ export const fetchPlugin = (inputCode: string | undefined) => {
         }
       })
 
-      // build.onLoad({ filter: /.*/ }, async (args: any) => {
-      //   //Check filecache
-      //   const cacheResult = await filecache.getItem<esbuild.OnLoadResult>(args.path)
-
-      //   if (cacheResult) {
-      //     return cacheResult
-      //   }
-        // console.log('111')
-        // const cacheResult = await mem.find((item) => item.path === args.path)
-        // console.log(mem)
-
-        // if (cacheResult) {
-        //   return cacheResult
-        // }
-      // })
 
       build.onLoad({ filter: /.css$/ }, async (args: any) => {
-
+        //Поиск в Кеше
         const cacheResult = await cache.find((item) => item.path === args.path)
-
         if (cacheResult) {
           return cacheResult.getAxiosResult
         }
@@ -60,6 +44,7 @@ export const fetchPlugin = (inputCode: string | undefined) => {
           resolveDir: new URL('./', request.responseURL).pathname
         }
 
+        //Сохранение в Кеш
         await cache.push({
           path: args.path,
           getAxiosResult
@@ -71,29 +56,27 @@ export const fetchPlugin = (inputCode: string | undefined) => {
 
       build.onLoad({ filter: /.*/ }, async (args: any) => {
 
-
+        //Поиск в Кеше
         const cacheResult = await cache.find((item) => item.path === args.path)
-
         if (cacheResult) {
           return cacheResult.getAxiosResult
         }
 
         const { data, request } = await axios.get(args.path)
 
-       
         const getAxiosResult: esbuild.OnLoadResult = {
           loader: 'jsx',
           contents: data,
           resolveDir: new URL('./', request.responseURL).pathname
         }
 
+        //Сохранение в Кеш
         await cache.push({
           path: args.path,
           getAxiosResult
         })
 
         return getAxiosResult
-
       })
     }
   }

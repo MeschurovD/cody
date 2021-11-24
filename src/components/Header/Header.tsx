@@ -1,7 +1,7 @@
 
 //<--------------------IMPORT-------------------------->
 import React from 'react';
-import { NavLink, Redirect, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useTypeDispatch } from '../../hooks/redux';
 import { removeLogin } from '../../reducer/authSlice';
 import { clearWorkSpace, updateLoading } from '../../reducer/codeSlice';
@@ -14,12 +14,12 @@ import styles from './header.module.scss'
 const Header: React.FC = () => {
 
 
-  //<--------------------DATA AND STATES----------------->
+//<--------------------DATA AND STATES----------------->
   let history = useHistory()
   const dispatch = useTypeDispatch()
 
 
-  //<--------------------HANDLERS------------------------>
+//<--------------------HANDLERS------------------------>
   const redirectToMain = () => {
     history.push('/main')
     dispatch(updateLoading())
@@ -41,7 +41,7 @@ const Header: React.FC = () => {
   }
 
 
-  //<--------------------JSX COMPONENT------------------->
+//<--------------------JSX COMPONENT------------------->
   return (
     <div className={styles.header}>
       <div className={styles.left}>

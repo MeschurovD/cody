@@ -56,14 +56,9 @@ const CheckButton: React.FC<PropsType> = ({ children, onClickYesFunction, classN
               <i className={yesStyle} ></i>
               <span>{text}</span>
             </div>
-            {/* <div onClick={onClickNotButton} className={styles.check_button} >
-              <i className={noStyle} ></i>
-              <span>Нет</span>
-            </div> */}
           </div>
         </div>
       </div>
-
       <div onClick={onClickNotButton} className={blackoutStyle}></div>
     </>
   );

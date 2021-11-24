@@ -16,7 +16,7 @@ import styles from './workSpace.module.scss'
 const WorkSpace: React.FC = () => {
 
 
-  //<--------------------DATA AND STATES----------------->
+//<--------------------DATA AND STATES----------------->
   const params: { id: string } = useParams()
   const dispatch = useTypeDispatch()
   const loading = useTypeSelector(state => state.code.loading)
@@ -34,14 +34,12 @@ const WorkSpace: React.FC = () => {
   }, [])
 
 
-  //<--------------------JSX COMPONENT------------------->
+//<--------------------JSX COMPONENT------------------->
   return (
     <IsAuth>
       {
         loading
-          ? (
-            <div>Loading</div>
-          )
+          ? (<div>Loading</div>)
           : (
             <div className={styles.work_space}>
               <div className={styles.header}>
@@ -54,7 +52,6 @@ const WorkSpace: React.FC = () => {
             </div>
           )
       }
-
     </IsAuth>
   );
 };

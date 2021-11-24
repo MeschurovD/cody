@@ -15,7 +15,7 @@ import { getWorkSpacesAction, setWorkSpace, setWorkSpacesAction } from '../../Fi
 const Main: React.FC = () => {
 
 
-  //<--------------------DATA AND STATES----------------->
+//<--------------------DATA AND STATES----------------->
   const dispatch = useTypeDispatch()
 
   const spaces = useTypeSelector(state => state.spaces.workSpaces)
@@ -25,10 +25,10 @@ const Main: React.FC = () => {
     return <SpaceCard item={item} key={item.id} />
   })
 
-  const titleIcon = `bx bxs-dashboard ${styles.title_icon}`
   const titleStyle = isLogin ? `${styles.title} ${styles.loader}` : styles.title
 
-  //<--------------------USE EFFECT---------------------->
+//<--------------------USE EFFECT---------------------->
+  //Получение списка Досок
   useLayoutEffect(() => {
     if (isLogin && id) {
       console.log('Запрос')
@@ -36,18 +36,16 @@ const Main: React.FC = () => {
     }
   }, [])
 
+  //Сохранение списка Досок
   useEffect(() => {
     if (!isLogin) {
       console.log('spaces')
       setWorkSpacesAction(spaces, id)
     }
-
   }, [spaces])
 
 
-
-
-  //<--------------------HANDLERS------------------------>
+//<--------------------HANDLERS------------------------>
   const onClickNewSpace = () => {
     const id = String(Date.now() + lodash.random(10))
     dispatch(addSpace({ id, name: `Доска-${lodash.uniqueId()}` }))
@@ -55,15 +53,16 @@ const Main: React.FC = () => {
   }
 
 
-  //<--------------------JSX COMPONENT------------------->
+//<--------------------JSX COMPONENT------------------->
   return (
     <IsAuth>
       <div className={styles.main}>
         <Header />
-
         <div className={styles.spaces}>
           <div className={styles.board_header}>
-            <div className={titleStyle}>Доски</div>
+            <div className={titleStyle}>
+              Доски
+            </div>
             <div className={styles.new_board} onClick={onClickNewSpace}>
               <i className='bx bx-plus-medical'></i>
               <span>

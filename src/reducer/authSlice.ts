@@ -20,9 +20,7 @@ const authSlice = createSlice({
       state.id = action.payload.id
       state.token = action.payload.token
       state.isAuth = true
-      action.payload.isLogin
-        ? state.isLogin = true
-        : state.isLogin = true
+      state.isLogin = true
       state.errorCode = ErrorCode.NOT_ERROR
     },
     setError(state, action) {
@@ -46,5 +44,11 @@ const authSlice = createSlice({
   }
 })
 
-export const { addLogin, removeLogin, changeLogin, setError } = authSlice.actions
+export const { 
+  addLogin, 
+  removeLogin, 
+  changeLogin, 
+  setError 
+} = authSlice.actions
+
 export default authSlice.reducer

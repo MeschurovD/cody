@@ -1,14 +1,12 @@
 
 //<--------------------IMPORT-------------------------->
-import React, { memo, useEffect, useRef } from 'react';
+import React, { memo, useRef } from 'react';
 import { createReactEditorJS } from 'react-editor-js'
 import { CodePanelType } from '../../../../../reducer/types/codeTypes';
 import HeaderPanel from '../HeaderPanel/HeaderPanel';
-import styles from './textEditor.module.scss'
 import './editor.scss'
 import { useTypeDispatch } from '../../../../../hooks/redux';
 import { updateContent } from '../../../../../reducer/codeSlice';
-
 import Quote from '@editorjs/quote'
 import Marker from '@editorjs/marker'
 import CheckList from '@editorjs/checklist'
@@ -28,12 +26,12 @@ interface PropsType {
 const TextEditor: React.FC<PropsType> = ({ item, first, end }) => {
 
 
-  //<--------------------DATA AND STATES----------------->
+//<--------------------DATA AND STATES----------------->
   const dispatch = useTypeDispatch()
   const isMoveUp = !first
   const isMoveDown = !end
 
-  const instanseRef = useRef(null)
+  const instanseRef = useRef()
 
   const TextEditor = createReactEditorJS()
 
@@ -46,7 +44,7 @@ const TextEditor: React.FC<PropsType> = ({ item, first, end }) => {
   }
 
 
-  //<--------------------HANDLERS------------------------>
+//<--------------------HANDLERS------------------------>
   const handleInitialize = React.useCallback(async (instance) => {
     instanseRef.current = instance
     console.log(instanseRef.current)
@@ -54,18 +52,17 @@ const TextEditor: React.FC<PropsType> = ({ item, first, end }) => {
 
   const saveChange = async () => {
     //@ts-ignore
-    const saveData = await instanseRef.current.save()
-    dispatch(updateContent({ id: item.id, content: saveData }))
+      const saveData = await instanseRef.current.save()
+      dispatch(updateContent({ id: item.id, content: saveData }))
   }
 
 
-  //<--------------------JSX COMPONENT------------------->
+//<--------------------JSX COMPONENT------------------->
   return (
     <HeaderPanel item={item} isMoveUp={isMoveUp} isMoveDown={isMoveDown}>
       <TextEditor
         tools={tools}
         data={item.content}
-        //maxWidth={300}
         minHeight={10}
         onInitialize={handleInitialize}
         onChange={saveChange}

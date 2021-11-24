@@ -11,10 +11,9 @@ import styles from './registrPanel.module.scss'
 const RegistrPanel: React.FC = () => {
 
 
-  //<--------------------DATA AND STATES----------------->
+//<--------------------DATA AND STATES----------------->
   const dispatch = useTypeDispatch()
   const error = useTypeSelector(state => state.auth.errorCode)
-  console.log('error: ' + error)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -25,14 +24,14 @@ const RegistrPanel: React.FC = () => {
   const passwordStyle = `${styles.input} ${errorPassword ? styles.error_b : ''}`
 
 
+//<--------------------USE EFFECT---------------------->
   useEffect(() => {
     if (error === ErrorCode.INVALID_EMAIL) setErrorEmail('Неверный Email')
     if (error === ErrorCode.WRONG_PASSWORD) setErrorPassword('Неверный пароль')
   }, [error])
 
 
-
-  //<--------------------HANDLERS------------------------>
+//<--------------------HANDLERS------------------------>
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setErrorEmail('')
     setEmail(event.target.value)
@@ -83,7 +82,6 @@ const RegistrPanel: React.FC = () => {
         <button className={styles.login_button} onClick={onClickLogin} >Войти</button>
         <span>ИЛИ</span>
         <button className={styles.registr_button} onClick={onClickRegistration} >Зарегистрироваться</button>
-
       </div>
       <div className={styles.test} onClick={onClickTest}>
         <span>

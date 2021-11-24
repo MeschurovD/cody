@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CodePanelType, InitialStateType, PanelType } from "./types/codeTypes";
+import { InitialStateType, PanelType } from "./types/codeTypes";
 import _uniqueId from 'lodash/uniqueId'
-import { addSpace } from "./spacesSlice";
 
 const initialState: InitialStateType = {
   id: 0,
@@ -86,7 +85,6 @@ const codeSlice = createSlice({
         return item
       })
 
-      //@ts-ignore
       state.workSpace = mas
     },
     moveDown(state, action) {
@@ -103,12 +101,10 @@ const codeSlice = createSlice({
         return item
       })
 
-      //@ts-ignore
       state.workSpace = mas
     },
     updateContent(state, action) {
       const index = state.workSpace.findIndex(item => item.id === action.payload.id)
-      //@ts-ignore
       state.workSpace[index].content = action.payload.content
     },
     clearWorkSpace(state) {
@@ -119,17 +115,6 @@ const codeSlice = createSlice({
       }
     }
   },
-  // extraReducers: (builder) => {
-  //   builder
-  //   .addCase(addSpace, (state, action: any) => {
-  //     state.id = action.payload.id
-  //     state.workSpace = [{
-  //       id: _uniqueId(),
-  //       type: 'code',
-  //       content: ''
-  //     }]
-  //   })
-  // }
 })
 
 export const {

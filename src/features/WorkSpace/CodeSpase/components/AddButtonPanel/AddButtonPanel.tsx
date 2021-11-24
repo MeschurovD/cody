@@ -1,20 +1,29 @@
+
+//<--------------------IMPORT-------------------------->
 import React from 'react';
 import AddButton from '../../../../../components/AddButton/AddButton';
-
 import styles from './addButtonPanel.module.scss'
 
+
+//<--------------------TYPE---------------------------->
 interface PropsType {
   onClickCodeButton: Function
   onClickWindowButton: Function
   onClickTextButton: Function
 }
 
+
+//<--------------------COMPONENT----------------------->
 const AddButtonPanel: React.FC<PropsType> = (props) => {
 
+
+//<--------------------DATA AND STATES----------------->
   const codeIcon = 'bx bx-code-alt'
   const windowIcon = 'bx bx-window'
   const textIcon = 'bx bx-text'
 
+
+//<--------------------HANDLERS------------------------>
   const onClickCodeButton = () => {
     console.log('onClickCodeButton')
     props.onClickCodeButton()
@@ -31,6 +40,7 @@ const AddButtonPanel: React.FC<PropsType> = (props) => {
   }
 
 
+//<--------------------JSX COMPONENT------------------->
   return (
     <div className={styles.panel}>
       <AddButton icon={codeIcon} onClickButton={onClickCodeButton} >Code</AddButton>

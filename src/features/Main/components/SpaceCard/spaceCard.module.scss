@@ -1,78 +1,68 @@
+.card {
+  @include board;
+  padding: 2rem;
 
-  .card {
-    @include board;
-    
-    padding: 2rem;
+  &:hover .wrapper > .header > .delete {
+    margin-left: 1rem;
+    display: inline-block;
+    font-size: 2rem;
+  }
 
-    &:hover .wrapper > .header > .delete {
-      margin-left: 1rem;
-      display: inline-block;
-      font-size: 2rem;
-    }
+  .wrapper {
+    .header {
+      display: flex;
 
-    .wrapper {
-      .header {
-        display: flex;
-
-        input {
-          flex-basis: 85%;
-          margin: 1rem 0;
-          color: $text-color;
-          background: inherit;
-          border: none;
-          font-size: 2rem;
-          width: 70%;
-          border-bottom: 1px solid $bg-1;
-          transition: all .3s;
-        }
-
-        input:focus-visible {
-          border-bottom: 1px solid $blue-color;
-          transform: scale(1.05);
-          transition: all .3s;
-          outline: none;
-        }
-
-        .delete {
-          display: none;
-          margin: auto 0;
-          
-          .delete_button {
-            font-size: 2rem;
-            cursor: pointer;
-
-            &:hover {
-              transition: .2s;
-              transform: scale(1.15);
-            }
-          }
-        }
-
+      input {
+        flex-basis: 85%;
+        margin: 1rem 0;
+        color: $text-color;
+        background: inherit;
+        border: none;
+        font-size: 2rem;
+        width: 70%;
+        border-bottom: 1px solid $bg-1;
+        transition: all 0.3s;
       }
 
-      .nav {
-        text-decoration: none;
-        .go {
-          // font-size: 2rem;
-          // display: flex;
-          // gap: 1rem;
-          // align-items: center;
+      input:focus-visible {
+        border-bottom: 1px solid $blue-color;
+        transform: scale(1.05);
+        transition: all 0.3s;
+        outline: none;
+      }
 
-          @include icon-button;
+      .delete {
+        display: none;
+        margin: auto 0;
 
-          .text {
-            flex-basis: 85%;
-            display: flex;
-            justify-content: center;
+        .delete_button {
+          font-size: 2rem;
+          cursor: pointer;
+
+          &:hover {
+            transition: 0.2s;
+            transform: scale(1.15);
           }
-          .go_icon {
-            
-          }
-          i {
-            font-size: 3rem;
-          }
+        }
+      }
+    }
+
+    .nav {
+      text-decoration: none;
+
+      .go {
+        @include icon-button;
+
+        .text {
+          flex-basis: 85%;
+          display: flex;
+          justify-content: center;
+        }
+
+        i {
+          font-size: 3rem;
         }
       }
     }
   }
-
+}

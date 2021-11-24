@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 import { useTypeDispatch, useTypeSelector } from '../../../hooks/redux';
 import { addCodePanel, addIframe, addText } from '../../../reducer/codeSlice';
 import AddButtonPanel from './components/AddButtonPanel/AddButtonPanel';
-
 import styles from './codeSpace.module.scss'
 import CodePanel from './components/CodePanel/CodePanel';
 import IframeWindow from './components/IframeWindow/IframeWindow';
@@ -14,6 +13,8 @@ import { setExample, updateWorkSpace } from '../../../Firebase/actions/firestore
 import AddPanelBetween from '../../../components/AddPanelBetween/AddPanelBetween';
 import lodash from 'lodash';
 
+
+//<--------------------TYPE---------------------------->
 interface PropsType {
   id: string
 }
@@ -22,7 +23,7 @@ interface PropsType {
 const CodeSpace: React.FC<PropsType> = ({ id }) => {
 
 
-  //<--------------------DATA AND STATES----------------->
+//<--------------------DATA AND STATES----------------->
   const dispatch = useTypeDispatch()
   const workSpace = useTypeSelector(state => state.code.workSpace)
 
@@ -55,13 +56,14 @@ const CodeSpace: React.FC<PropsType> = ({ id }) => {
     }
   })
 
+
+//<--------------------USE EFFECT---------------------->
   useEffect(() => {
-    console.log('update codeSpace')
     if (id !== 'example') updateWorkSpace(id, workSpace)
   }, [workSpace])
 
 
-  //<--------------------HANDLERS------------------------>
+//<--------------------HANDLERS------------------------>
   const onClickCodeButton = () => {
     dispatch(addCodePanel({ id: Date.now() }))
   }
@@ -74,12 +76,13 @@ const CodeSpace: React.FC<PropsType> = ({ id }) => {
     dispatch(addText({ id: Date.now() }))
   }
 
+  //Для сохранения примера в базу данных
   const saveExample = () => {
     setExample(workSpace)
   }
 
 
-  //<--------------------JSX COMPONENT------------------->
+//<--------------------JSX COMPONENT------------------->
   return (
     <div className={styles.code_space}>
       {workSpaceItems}
@@ -89,7 +92,7 @@ const CodeSpace: React.FC<PropsType> = ({ id }) => {
         onClickWindowButton={onClickWindowButton}
         onClickTextButton={onClickTextButon}
       />
-      <button onClick={saveExample}>Сохранить как пример</button>
+      {/* <button onClick={saveExample}>Сохранить как пример</button> */}
     </div>
   );
 };

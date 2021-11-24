@@ -10,10 +10,6 @@ export interface CodePanelType {
   content: string | undefined
 }
 
-interface IframeType {
-  id: string
-  type: PanelType
-}
 
 export interface InitialStateType {
   id: number

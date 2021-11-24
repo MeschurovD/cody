@@ -44,6 +44,9 @@ const userWorkSpace = 'userworkspace'
 const example = 'example'
 const idExample = '1'
 
+//////////////////////////////////
+//WORK SPACES
+
 export const setWorkSpacesAction: SetWorkSpacesType = async (workSpaces, id) => {
   console.log('setWorkSpacesAction')
   const docRef = doc(db, userWorkSpaces, id)
@@ -56,14 +59,16 @@ export const getWorkSpacesAction: GetWorkSpacesType = async (id, dispatch) => {
   const docRef = doc(db, userWorkSpaces, id)
   try {
     const workSpaces = await getDoc(docRef)
-    //console.log(workSpaces.data())
     const data = workSpaces.data()
     dispatch(allSpaces({workSpaces: data}))
-    //dispatch(changeLogin())
   } catch (error) {
     console.log(error)
   }
 }
+
+
+//////////////////////////////////
+//WORK SPACE
 
 export const setWorkSpace: SetWorkSpace = async (id) => {
   console.log('setWorkSpace')
@@ -104,6 +109,9 @@ export const deleteWorkSpace = async(id: string) => {
   await deleteDoc(docRef)
 }
 
+//////////////////////////////////
+//EXAMPLE
+
 export const setExample = async (workSpace: any) => {
   console.log('Сохранение примера')
   const id = idExample
@@ -118,7 +126,6 @@ export const getExample = async (dispatch: any) => {
   try {
     const workSpace = await getDoc(docRef)
     const data = workSpace.data()
-    //@ts-ignore
     dispatch(loadSpace(data))
   } catch (error) {
     console.log(error)
