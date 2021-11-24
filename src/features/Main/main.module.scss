@@ -1,0 +1,62 @@
+.main {
+  width: clamp(40rem, 97%, 100rem);
+  margin: auto;
+  height: 100vh;
+
+  .spaces {
+    width: 100%;
+    margin: auto;
+
+    .board_header {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding: 1rem;
+      gap: 1rem;
+
+      .title {
+        position: relative;
+        font-size: 3.6rem;
+        font-weight: 700;
+      }
+
+      .new_board {
+        @include icon-button;
+        gap: 1rem;
+      }
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+      margin-top: 2rem;
+      gap: 10rem;
+    }
+  }
+}
+
+.loader {
+  &::before {
+    content: "Доски";
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: $blue-color;
+    overflow: hidden;
+    animation: loading 1s infinite linear;
+  }
+}
+
+
+///////////////////////////
+//KEYFRAMES
+
+@keyframes loading {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}

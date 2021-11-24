@@ -6,12 +6,12 @@ export const unpkgPathPlugin = () => {
     name: 'unpkg-path-plugin',
     setup(build: esbuild.PluginBuild) {
 
-      //Handler index.js path
+      //Обработка index.js
       build.onResolve({filter: /^index\.js$/}, () => {
         return { path: 'index.js', namespace: 'a' }
       })
 
-      //Handler path in module
+      //Обработка модулей
       build.onResolve({filter: /^\.+\//}, (args: any) => {
         return {
           namespace: 'a',
@@ -19,7 +19,7 @@ export const unpkgPathPlugin = () => {
         }
       })
 
-      //Handler other
+      //Остальное
       build.onResolve({ filter: /.*/ }, async (args: any) => {
         return {
           namespace: 'a',

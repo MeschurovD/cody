@@ -1,0 +1,74 @@
+.panel {
+  @include work-space-container;
+  @include board;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  .header_panel {
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    .left {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+
+      .type_icon {
+        font-size: 3rem;
+        border-right: 2px solid $text-color;
+        padding-right: 1.5rem;
+      }
+
+      .collapse_button {
+        font-size: 2rem;
+        @include icon-button($bg-1);
+
+        i {
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+
+  .body_panel {
+    width: 96%;
+    height: clamp(10rem, 100%, 60rem);
+    animation: collapse-down 0.5s;
+  }
+
+  .collapse {
+    animation: collapse-up 0.5s;
+    overflow: hidden;
+    & * {
+      display: none;
+    }
+  }
+}
+
+////////////////////////
+//KEYFRAMES
+
+@keyframes collapse-up {
+  0% {
+    height: clamp(10rem, 100%, 60rem);
+    display: block;
+  }
+
+  100% {
+    height: 0;
+  }
+}
+
+@keyframes collapse-down {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 100%;
+  }
+}

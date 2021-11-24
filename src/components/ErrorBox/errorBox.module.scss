@@ -1,0 +1,63 @@
+.error_box {
+  background-color: $error-box-color;
+  position: absolute;
+  height: 10rem;
+  width: 30rem;
+  top: calc(100vh - 11rem);
+  left: calc(50vw - 15rem);
+  display: flex;
+  flex-direction: column;
+  border-radius: 2rem;
+  padding: 1rem;
+  font-size: 2rem;
+  
+
+  .title {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid black;
+  }
+}
+
+.first {
+  opacity: 0;
+}
+.active {
+  animation: up .8s;
+  opacity: 1;
+}
+
+.disable {
+  animation: down .8s;
+  opacity: 0;
+}
+
+
+////////////////
+//KEYFRAMES
+
+@keyframes up {
+  0% {
+    transform: translateX(30rem);
+    opacity: 0;
+    //height: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+    //height: 10rem;
+  }
+}
+
+@keyframes down {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-30rem);
+    opacity: 0;
+  }
+}

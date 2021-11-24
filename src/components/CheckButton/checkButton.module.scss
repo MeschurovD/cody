@@ -1,0 +1,65 @@
+@mixin check-button {
+  width: 3rem;
+  height: 3rem;
+  font-size: 3rem;
+  line-height: 3rem;
+  align-items: center;
+  border-radius: 2rem;
+}
+
+.button {
+  position: relative;
+
+  .check_disable {
+    display: none;
+    position: absolute;
+  }
+
+  .check_active {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 20;
+    top: 105%;
+    right: 0;
+    background-color: $bg-1;
+    font-size: 2rem;
+    width: 20rem;
+    border-radius: 2rem;
+    padding: 1rem;
+    gap: 1rem;
+    span {
+      margin: auto;
+    }
+
+    .confirmation {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+
+      .check_button {
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        margin: auto;
+        background-color: $bg-2;
+        border-radius: 1rem;
+        padding: 1rem;
+        gap: 1rem;
+
+        &:hover .yes {
+          color: red;
+        }
+
+        .yes {
+          @include check-button();
+        }
+
+      }
+    }
+  }
+}
+
+
+
+

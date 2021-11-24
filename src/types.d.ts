@@ -1,0 +1,8 @@
+declare module 'monaco-jsx-highlighter'
+declare module 'lodash/uniqueId'
+declare module 'react-editor-js'
+declare module '@editorjs/quote'
+declare module '@editorjs/marker'
+declare module '@editorjs/checklist'
+declare module '@editorjs/list'
+declare module '@editorjs/header'
