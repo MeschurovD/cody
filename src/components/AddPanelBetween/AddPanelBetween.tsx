@@ -17,20 +17,21 @@ interface PropsType {
 const AddPanelBetween: React.FC<PropsType> = ({ id }) => {
 
 
-  //<--------------------DATA AND STATES----------------->
+//<--------------------DATA AND STATES----------------->
   const dispatch = useTypeDispatch()
   const [active, setActive] = useState(false)
   const [first, setFirst] = useState(true)
 
   const wrapperStyle = first
     ? `${styles.wrapper} ${styles.first}`
-    : active ? `${styles.wrapper} ${styles.active}` : `${styles.wrapper} ${styles.disable}`
+    : active 
+    ? `${styles.wrapper} ${styles.active}` 
+    : `${styles.wrapper} ${styles.disable}`
 
-  const blackoutStyle = active ? styles.blackout : ''
   const iconPlusStyle = active ? `${styles.icon_plus} bx bx-minus` : `${styles.icon_plus} bx bx-plus`
 
 
-  //<--------------------HANDLERS------------------------>
+//<--------------------HANDLERS------------------------>
   const onClickButton = () => {
     setActive(!active)
     setFirst(false)
@@ -41,7 +42,6 @@ const AddPanelBetween: React.FC<PropsType> = ({ id }) => {
   }
 
   const onClickAddTextPanel = () => {
-    console.log('id - ' + id)
     dispatch(addItem({ id: Date.now(), afterId: id, type: PanelType.TEXT }))
   }
 
@@ -50,7 +50,7 @@ const AddPanelBetween: React.FC<PropsType> = ({ id }) => {
   }
 
 
-  //<--------------------JSX COMPONENT------------------->
+//<--------------------JSX COMPONENT------------------->
   return (
     <div className={styles.add_button}>
       <div className={wrapperStyle}>

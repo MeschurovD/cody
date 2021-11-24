@@ -13,6 +13,11 @@ const spacesSlice = createSlice({
   reducers: {
     allSpaces(state, action) {
       state.workSpaces = action.payload.workSpaces.workSpaces
+      state.workSpaces.push({
+        id: 'example',
+        name: 'Пример',
+        codeCount: 1
+      })
     },
     addSpace(state, action) {
       state.workSpaces = [

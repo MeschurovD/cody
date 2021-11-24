@@ -19,11 +19,11 @@ interface PropsType {
 const ButtonsMenu: React.FC<PropsType> = ({ id, isRemove = false, isMoveUp = false, isMoveDown = false }) => {
 
   
-  //<--------------------DATA AND STATES----------------->
+//<--------------------DATA AND STATES----------------->
   const dispatch = useTypeDispatch()
 
 
-  //<--------------------HANDLERS------------------------>
+//<--------------------HANDLERS------------------------>
   const onClickRemove = () => {
     dispatch(deleteItem({ id }))
   }
@@ -37,7 +37,7 @@ const ButtonsMenu: React.FC<PropsType> = ({ id, isRemove = false, isMoveUp = fal
   }
 
 
-  //<--------------------JSX COMPONENT------------------->
+//<--------------------JSX COMPONENT------------------->
   return (
     <div className={styles.button_menu}>
       {isMoveUp && <div onClick={onClickMoveUp} >

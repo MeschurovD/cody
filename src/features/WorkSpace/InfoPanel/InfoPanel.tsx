@@ -13,12 +13,9 @@ const InfoPanel: React.FC<PropsType> = ({id}) => {
 
   const info = useTypeSelector(state => {
     const workSpaces = state.spaces.workSpaces
-    console.log(workSpaces)
     const index = workSpaces.findIndex(item => item.id === id)
-    console.log(index)
     return workSpaces[index].name
   })
-  console.log('info ' + info)
 
   const [name, setName] = useState('')
 

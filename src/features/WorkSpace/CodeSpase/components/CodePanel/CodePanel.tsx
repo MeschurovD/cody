@@ -1,15 +1,15 @@
 
 //<--------------------IMPORT-------------------------->
 import React, { memo, useEffect, useState } from 'react';
-import ButtonsMenu from '../../../../../components/ButtonsMenu/ButtonsMenu';
 import CodeEditor from '../../../../../components/CodeEditor/CodeEditor';
 import Iframe from '../../../../../components/Iframe/Iframe';
-import Resizable from '../../../../../components/Resizable/Resizable';
 import { useTypeDispatch, useTypeSelector } from '../../../../../hooks/redux';
 import { updateContent } from '../../../../../reducer/codeSlice';
 import { CodePanelType } from '../../../../../reducer/types/codeTypes';
 import { getCumulativeCode } from '../../utils/cumulativeCode'
 import HeaderPanel from '../HeaderPanel/HeaderPanel';
+import parser from 'prettier/parser-babel'
+import prettier from 'prettier'
 import styles from './codePanel.module.scss'
 
 
@@ -42,6 +42,17 @@ const CodePanel: React.FC<PropsType> = ({item, first, end}) => {
   const isMoveUp = !first
   const isMoveDown = !end
 
+  const codeSpace = isIframe
+  ? (
+    <div className={styles.code_editor_iframe}>
+      <Iframe code={cumulativeCode.join('\n')}/>
+    </div>
+  )
+  : (
+    <div className={styles.code_editor}>
+      <CodeEditor initialValue={input} onChange={setInput} />
+    </div>
+  )
 
 
 //<--------------------USE EFFECT---------------------->
@@ -63,17 +74,16 @@ const CodePanel: React.FC<PropsType> = ({item, first, end}) => {
     setIsIframe(!isIframe)
   }
 
-  const codeSpace = isIframe
-    ? (
-      <div className={styles.code_editor_iframe}>
-        <Iframe code={cumulativeCode.join('\n')}/>
-      </div>
-    )
-    : (
-      <div className={styles.code_editor}>
-        <CodeEditor initialValue={input} onChange={setInput} />
-      </div>
-    )
+  const ChangeFormat = () => {
+    const formatted = prettier.format(input ? input : '', {
+      parser: 'babel',
+      plugins: [parser],
+      useTabs: false,
+      semi: true,
+      singleQuote: true
+    })
+    setInput(formatted)
+  }
 
 
 //<--------------------JSX COMPONENT------------------->
@@ -81,7 +91,8 @@ const CodePanel: React.FC<PropsType> = ({item, first, end}) => {
     <HeaderPanel item={item} isMoveUp={isMoveUp} isMoveDown={isMoveDown} >
       <div className={styles.control_panel}>
         {/* <input type="text" /> */}
-        <button className={styles.iframe_button} onClick={onClickIframe}>{titleIframe}</button>
+        <button className={styles.button} onClick={onClickIframe}>{titleIframe}</button>
+        <button className={styles.button} onClick={ChangeFormat}>Форматирование</button>
       </div>
       <div className={styles.code_space}>
         {codeSpace}

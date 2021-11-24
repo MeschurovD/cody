@@ -35,6 +35,7 @@
     animation: disable .3s;
     width: 3rem;
   }
+  
   .active {
     animation: active .8s;
     width: 100%;
@@ -48,6 +49,9 @@
     width: 3rem;
   }
 }
+
+///////////////////
+//KEYFRAMES
 
 @keyframes active {
   0% {

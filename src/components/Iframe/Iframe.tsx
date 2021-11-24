@@ -45,6 +45,7 @@ const Iframe: React.FC<PropsType> = ({ code = undefined }) => {
             handleError(error.message)
           })
           window.addEventListener('message', (event) => {
+            event.preventDefault()
             try {
               eval(event.data)
             } catch (err) {

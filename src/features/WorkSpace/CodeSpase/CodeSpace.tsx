@@ -10,7 +10,7 @@ import CodePanel from './components/CodePanel/CodePanel';
 import IframeWindow from './components/IframeWindow/IframeWindow';
 import _uniqueId from 'lodash/uniqueId'
 import TextEditor from './components/TextEditor/TextEditor';
-import { updateWorkSpace } from '../../../Firebase/actions/firestoreAction';
+import { setExample, updateWorkSpace } from '../../../Firebase/actions/firestoreAction';
 import AddPanelBetween from '../../../components/AddPanelBetween/AddPanelBetween';
 import lodash from 'lodash';
 
@@ -32,8 +32,6 @@ const CodeSpace: React.FC<PropsType> = ({ id }) => {
     const key = item.id
     const keyButton = item.id + String(lodash.random(100, 1000))
     if (item.type === 'code') {
-      console.log('key - ' + key)
-      console.log('keyb - ' + keyButton)
       return (
         <>
           <AddPanelBetween id={item.id} key={keyButton} />
@@ -41,8 +39,6 @@ const CodeSpace: React.FC<PropsType> = ({ id }) => {
         </>
       )
     } else if (item.type === 'iframe') {
-      console.log(key)
-      console.log(keyButton)
       return (
         <>
           <AddPanelBetween id={item.id} key={keyButton} />
@@ -50,8 +46,6 @@ const CodeSpace: React.FC<PropsType> = ({ id }) => {
         </>
       )
     } else if (item.type === 'text') {
-      console.log(key)
-      console.log(keyButton)
       return (
         <>
           <AddPanelBetween id={item.id} key={keyButton} />
@@ -63,7 +57,7 @@ const CodeSpace: React.FC<PropsType> = ({ id }) => {
 
   useEffect(() => {
     console.log('update codeSpace')
-    updateWorkSpace(id, workSpace)
+    if (id !== 'example') updateWorkSpace(id, workSpace)
   }, [workSpace])
 
 
@@ -80,6 +74,10 @@ const CodeSpace: React.FC<PropsType> = ({ id }) => {
     dispatch(addText({ id: Date.now() }))
   }
 
+  const saveExample = () => {
+    setExample(workSpace)
+  }
+
 
   //<--------------------JSX COMPONENT------------------->
   return (
@@ -91,6 +89,7 @@ const CodeSpace: React.FC<PropsType> = ({ id }) => {
         onClickWindowButton={onClickWindowButton}
         onClickTextButton={onClickTextButon}
       />
+      <button onClick={saveExample}>Сохранить как пример</button>
     </div>
   );
 };

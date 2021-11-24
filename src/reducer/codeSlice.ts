@@ -6,7 +6,7 @@ import { addSpace } from "./spacesSlice";
 const initialState: InitialStateType = {
   id: 0,
   loading: true,
-  workSpace: []
+  workSpace: [],
 }
 
 const codeSlice = createSlice({

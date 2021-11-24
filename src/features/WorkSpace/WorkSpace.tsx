@@ -4,7 +4,7 @@ import React, { useEffect, useLayoutEffect } from 'react';
 import { useParams } from 'react-router';
 import Header from '../../components/Header/Header';
 import IsAuth from '../../components/IsAuth/IsAuth';
-import { getWorkSpace } from '../../Firebase/actions/firestoreAction';
+import { getExample, getWorkSpace } from '../../Firebase/actions/firestoreAction';
 import { useTypeDispatch, useTypeSelector } from '../../hooks/redux';
 import CodeSpace from './CodeSpase/CodeSpace';
 import InfoPanel from './InfoPanel/InfoPanel';
@@ -23,7 +23,13 @@ const WorkSpace: React.FC = () => {
 
   useLayoutEffect(() => {
     if (loading) {
-      getWorkSpace(String(params.id), dispatch)
+      if (params.id === 'example') {
+        console.log('getExample')
+        getExample(dispatch)
+      } else {
+        console.log('getWorkSpace')
+        getWorkSpace(String(params.id), dispatch)
+      }
     }
   }, [])
 

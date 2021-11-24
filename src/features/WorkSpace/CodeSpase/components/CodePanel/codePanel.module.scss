@@ -10,16 +10,20 @@
   
 }
 .control_panel {
+  display: flex;
   width: 96%;
   margin-bottom: 1rem;
+  gap: 1rem;
 
-  .iframe_button {
+  .button {
+    display: inline-block;
     font-size: 1.6rem;
     padding: 1rem;
     border: 1px solid $bg-2;
     background-color: inherit;
     border-radius: 2rem;
-    width: 10rem;
+    min-width: 10rem;
+    color: $text-color;
 
     &:hover {
       color: $blue-color;
