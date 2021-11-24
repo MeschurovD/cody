@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { lazy, useEffect } from 'react';
 // @ts-ignore
 import { BrowserRouter, Route, Switch, Redirect, NavLink } from 'react-router-dom';
 import Main from './features/Main/Main';
-import Cody from './Cody'
-import WorkSpace from './features/WorkSpace/WorkSpace';
+//import Cody from './Cody'
+//import WorkSpace from './features/WorkSpace/WorkSpace';
 import { startService } from './esBuild/esbuild';
 import Registration from './features/Registration/Registration';
+
+const WorkSpace = lazy(() => import('./features/WorkSpace/WorkSpace'))
 
 const App: React.FC = () => {
 
@@ -24,7 +26,6 @@ const App: React.FC = () => {
             : <Main />
           }
         </Route>
-        <Route path='/cody' component={Cody} />
         <Route path='/register' component={Registration} />
         {/* <Route path='/card/:username/:reponame' component={Repository} /> */}
         <Route path='/work_space/:id' component={WorkSpace} />

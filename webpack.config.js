@@ -6,6 +6,7 @@ const webpack = require('webpack')
 const Dotenv = require('dotenv').config({
   path: path.join(__dirname, '.env')
 })
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const resourcesLoader = {
   loader: 'sass-resources-loader',
@@ -36,6 +37,7 @@ module.exports = {
       '@': path.resolve(__dirname, 'src'),
     }
   },
+  devtool: 'cheap-module-source-map',
   devServer: {
     port: 3000,
     historyApiFallback: true
@@ -105,8 +107,10 @@ module.exports = {
     ]
   },
   plugins: [
+    new BundleAnalyzerPlugin(),
     new webpack.DefinePlugin({
-      "process.env": Dotenv.parsed
+      "process.env": Dotenv.parsed,
+      'process.env.NODE_ENV': '"production"'
     }),
     new miniCss({
       filename: 'style.css'

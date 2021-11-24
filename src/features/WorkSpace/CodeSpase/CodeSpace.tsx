@@ -11,7 +11,7 @@ import _uniqueId from 'lodash/uniqueId'
 import TextEditor from './components/TextEditor/TextEditor';
 import { setExample, updateWorkSpace } from '../../../Firebase/actions/firestoreAction';
 import AddPanelBetween from '../../../components/AddPanelBetween/AddPanelBetween';
-import lodash from 'lodash';
+import random from 'lodash/random';
 
 
 //<--------------------TYPE---------------------------->
@@ -31,7 +31,7 @@ const CodeSpace: React.FC<PropsType> = ({ id }) => {
     const first = index === 0
     const end = index === (workSpace.length - 1)
     const key = item.id
-    const keyButton = item.id + String(lodash.random(100, 1000))
+    const keyButton = item.id + String(random(100, 1000))
     if (item.type === 'code') {
       return (
         <>
@@ -87,7 +87,7 @@ const CodeSpace: React.FC<PropsType> = ({ id }) => {
     <div className={styles.code_space}>
       {workSpaceItems}
       <AddButtonPanel
-        key={Date.now() + lodash.random(1000, 1500)}
+        key={Date.now() + random(1000, 1500)}
         onClickCodeButton={onClickCodeButton}
         onClickWindowButton={onClickWindowButton}
         onClickTextButton={onClickTextButon}

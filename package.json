@@ -19,8 +19,6 @@
     "@types/react-dom": "^17.0.9",
     "@types/react-resizable": "1.7.4",
     "axios": "^0.22.0",
-    "clean-webpack-plugin": "^4.0.0",
-    "esbuild-wasm": "0.13.3",
     "firebase": "^9.4.1",
     "jscodeshift": "0.13.0",
     "localforage": "^1.10.0",
@@ -35,16 +33,13 @@
     "react-resizable": "3.0.4",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
-    "sass": "^1.43.4",
-    "sass-resources-loader": "^2.2.4",
-    "ts-loader": "^9.2.6",
-    "typescript": "^4.4.3",
     "web-vitals": "^1.1.2",
     "webpack-5": "^0.0.0"
   },
   "scripts": {
     "dev": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "analyze": "source-map-explorer 'build/main.*.js'"
   },
   "eslintConfig": {
     "extends": [
@@ -73,9 +68,16 @@
     "@editorjs/quote": "^2.4.0",
     "@types/lodash": "^4.14.176",
     "@types/react-router-dom": "^5.3.2",
+    "clean-webpack-plugin": "^4.0.0",
     "dotenv-webpack": "^7.0.3",
+    "esbuild-wasm": "^0.13.15",
     "html-webpack-plugin": "^5.5.0",
+    "sass": "^1.43.4",
+    "sass-resources-loader": "^2.2.4",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.2",
     "webpack": "^5.61.0",
+    "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.4.0"
   }
