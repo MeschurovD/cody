@@ -3,7 +3,8 @@
 import React, { useEffect, useLayoutEffect } from 'react';
 import Header from '../../components/Header/Header';
 import { useTypeDispatch, useTypeSelector } from '../../hooks/redux';
-import lodash from 'lodash'
+import random from 'lodash/random'
+import uniqueId from 'lodash/uniqueId'
 import styles from './main.module.scss'
 import { addSpace } from '../../reducer/spacesSlice';
 import SpaceCard from './components/SpaceCard/SpaceCard';
@@ -47,8 +48,8 @@ const Main: React.FC = () => {
 
 //<--------------------HANDLERS------------------------>
   const onClickNewSpace = () => {
-    const id = String(Date.now() + lodash.random(10))
-    dispatch(addSpace({ id, name: `Доска-${lodash.uniqueId()}` }))
+    const id = String(Date.now() + random(10))
+    dispatch(addSpace({ id, name: `Доска-${uniqueId()}` }))
     setWorkSpace(id)
   }
 
