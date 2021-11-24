@@ -11,6 +11,7 @@ import HeaderPanel from '../HeaderPanel/HeaderPanel';
 import parser from 'prettier/parser-babel'
 import prettier from 'prettier'
 import styles from './codePanel.module.scss'
+import { selector } from '../../utils/selectorCumulativeCode';
 
 
 //<--------------------TYPE---------------------------->
@@ -32,10 +33,7 @@ const CodePanel: React.FC<PropsType> = ({item, first, end}) => {
   const [isIframe, setIsIframe] = useState(false)
 
   //Сбор всего кода с предыдущих CodePanel
-  const cumulativeCode = useTypeSelector(state => {
-    const workSpace = state.code.workSpace
-    return getCumulativeCode(workSpace, item)
-  })
+  const cumulativeCode = useTypeSelector(state => selector(state, item))
 
   const titleIframe = isIframe ? 'Код' : 'Окно'
 
@@ -65,7 +63,6 @@ const CodePanel: React.FC<PropsType> = ({item, first, end}) => {
     return () => {
       clearTimeout(timer)
     } 
-    
   }, [input])
 
 

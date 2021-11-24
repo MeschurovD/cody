@@ -1,11 +1,15 @@
 import { CodePanelType } from "../../../../reducer/types/codeTypes"
 
+
 export const getCumulativeCode = (workSpace: CodePanelType[], item: CodePanelType) => {
 
+  //Импорт React и React-DOM
   const reactImport = `
     import React from 'react'
     import ReactDOM from 'react-dom'
   `
+
+  //Функция show для отображения результата
   const show = `
     var show = (value) => {
       const root = document.querySelector('#root')
@@ -23,10 +27,10 @@ export const getCumulativeCode = (workSpace: CodePanelType[], item: CodePanelTyp
   const noShow = `var show = () => {}`
 
   const cumulativeCode = []
+
   cumulativeCode.push(reactImport)
 
   for (let c of workSpace) {
-
     if (c.type === 'code') {
       if (c.id === item.id || item.type === 'iframe') {
         cumulativeCode.push(show)
@@ -39,5 +43,6 @@ export const getCumulativeCode = (workSpace: CodePanelType[], item: CodePanelTyp
       break
     }
   }
+
   return cumulativeCode
 }
