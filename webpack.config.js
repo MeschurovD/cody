@@ -110,7 +110,6 @@ module.exports = {
     new BundleAnalyzerPlugin(),
     new webpack.DefinePlugin({
       "process.env": Dotenv.parsed,
-      'process.env.NODE_ENV': '"production"'
     }),
     new miniCss({
       filename: 'style.css'
