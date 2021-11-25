@@ -2,6 +2,7 @@
   "name": "cody",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://meschurovd.github.io/cody/",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "@editorjs/editorjs": "^2.22.2",
@@ -38,7 +39,9 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [
