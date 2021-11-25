@@ -1,12 +1,13 @@
 
 //<--------------------IMPORT-------------------------->
-import React, { useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Main from './features/Main/Main';
-import WorkSpace from './features/WorkSpace/WorkSpace';
+//import WorkSpace from './features/WorkSpace/WorkSpace';
 import { startService } from './esBuild/esbuild';
 import Registration from './features/Registration/Registration';
 
+const WorkSpace = lazy(() => import('./features/WorkSpace/WorkSpace'))
 
 //<--------------------COMPONENT----------------------->
 const App: React.FC = () => {
@@ -21,10 +22,11 @@ const App: React.FC = () => {
     startService()
   }, [])
 
-  
+
 //<--------------------JSX COMPONENT------------------->
   return (
     <BrowserRouter>
+    <Suspense fallback={<div>Загрузка...</div>}>
       <Switch>
         <Route exact path='/main' >
           {!isReg
@@ -36,6 +38,7 @@ const App: React.FC = () => {
         <Route path='/work_space/:id' component={WorkSpace} />
         <Redirect to="/main" />
       </Switch>
+      </Suspense>
     </BrowserRouter>
   );
 };

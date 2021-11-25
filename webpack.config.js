@@ -37,6 +37,7 @@ module.exports = {
       '@': path.resolve(__dirname, 'src'),
     }
   },
+  devtool: 'cheap-module-source-map',
   devServer: {
     port: 3000,
     historyApiFallback: true
