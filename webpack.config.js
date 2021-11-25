@@ -6,6 +6,7 @@ const webpack = require('webpack')
 const Dotenv = require('dotenv').config({
   path: path.join(__dirname, '.env')
 })
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const resourcesLoader = {
   loader: 'sass-resources-loader',
@@ -105,6 +106,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new BundleAnalyzerPlugin(),
     new webpack.DefinePlugin({
       "process.env": Dotenv.parsed
     }),
