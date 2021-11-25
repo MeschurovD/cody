@@ -87,7 +87,7 @@ const CodePanel: React.FC<PropsType> = ({item, first, end}) => {
     <HeaderPanel item={item} isMoveUp={isMoveUp} isMoveDown={isMoveDown} >
       <div className={styles.control_panel}>
         <button className={styles.button} onClick={onClickIframe}>{titleIframe}</button>
-        <button className={styles.button} onClick={ChangeFormat}>Форматирование</button>
+        {/* <button className={styles.button} onClick={ChangeFormat}>Форматирование</button> */}
       </div>
       <div className={styles.code_space}>
         {codeSpace}
