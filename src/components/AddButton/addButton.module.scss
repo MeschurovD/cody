@@ -1,0 +1,9 @@
+.button {
+  gap: 1rem;
+  font-size: 2rem;
+  @include icon-button;
+
+  i {
+    font-size: 3rem;
+  }
+}

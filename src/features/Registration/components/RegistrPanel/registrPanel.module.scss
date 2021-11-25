@@ -1,0 +1,74 @@
+@mixin content {
+  width: 80%;
+  margin: auto;
+}
+
+@mixin button {
+  @include content;
+  border-radius: 2rem;
+  border: none;
+  padding: 1rem;
+  transition: all .4s;
+  font-size: 2rem;
+
+  &:hover {
+    background-color: $blue-color;
+    color: $bg-2;
+  }
+}
+
+.panel {
+  @include board;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 2rem;
+  padding: 2rem 0;
+
+  .title {
+    font-size: 2rem
+  }
+
+  .input {
+    @include content;
+    border: none;
+    border-bottom: 1px solid $text-color;
+    padding: .5rem 0;
+    transition: all .3s;
+
+    &:focus-visible {
+      outline: none;
+      transform: scale(1.05);
+      border-bottom: 1px solid $blue-color !important;
+    }
+  }
+
+  .registr_button {
+    @include button;
+    
+  }
+
+  .login_button {
+    @include button;
+  }
+
+  .error_t {
+    height: 2rem;
+    font-size: 1.6rem;
+    color: crimson;
+  }
+}
+
+.error_b {
+  border-bottom: 1px solid red !important;
+}
+
+.test {
+  display: inline-block;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  font-size: 1.6rem;
+  border-bottom: 1px solid black;
+}
+
+

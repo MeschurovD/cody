@@ -1,0 +1,86 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  color: $text-color;
+
+  .left {
+    display: flex;
+    align-items: center;
+    
+    .logo {
+      font-size: 3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      i {
+        font-size: 3rem;
+      }
+
+      &:hover {
+        color: $blue-color;
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    //gap: 1rem;
+    padding: 1rem;
+
+    .theme {
+      font-size: 2.6rem;
+      cursor: pointer;
+      align-items: center;
+      margin: auto;
+      background-color: $icon-theme-bg;
+      color: $icon-theme-color;
+      padding: .5rem;
+      border-radius: 50%;
+
+      i {
+        width: 4rem;
+        height: 4rem;
+        line-height: 4rem;
+        margin: auto;
+        text-align: center;
+        justify-content: center;
+      }
+      
+    }
+
+    .out {
+      display: flex;
+      margin-left: 1rem;
+      cursor: pointer;
+      font-size: 2rem;
+      align-items: center;
+      gap: 1rem;
+      background-color: $icon-button-bg-1;
+      border-radius: 3rem;
+      padding: 1rem 2rem 1rem 1rem;
+      border: 1px solid $icon-button-bg-1;
+
+      
+      &:hover {
+        transition: all .2s;
+        border: 1px solid $blue-color;
+      }
+      &:hover i {
+        transition: all .2s;
+        background-color: $blue-color;
+      }
+      i {
+        font-size: 2.6rem;
+        padding: .5rem;
+        background-color: $icon-button-bg-2;
+        color: $icon-color;
+        border-radius: 50%;
+      }
+
+      span {
+        align-items: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+.item {
+  @include work-space-container;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  @include drop-shadow;
+  border-radius: 2rem;
+
+  
+}
+.control_panel {
+  display: flex;
+  width: 96%;
+  margin-bottom: 1rem;
+  gap: 1rem;
+
+  .button {
+    display: inline-block;
+    font-size: 1.6rem;
+    padding: 1rem;
+    border: 1px solid $bg-2;
+    background-color: inherit;
+    border-radius: 2rem;
+    min-width: 10rem;
+    color: $text-color;
+
+    &:hover {
+      color: $blue-color;
+      border: 1px solid $blue-color;
+    }
+  }
+}
+
+.code_space {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 96%;
+  height: clamp(10rem, 40vh, 60rem);
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  @include drop-shadow;
+
+  .code_editor {
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    padding: 0.5rem;
+  }
+
+  .code_editor_iframe {
+    display: flex;
+    width: calc(100% - 1rem);
+    height: 100%;
+    border-radius: 1rem;
+    background-color: #fff;
+  }
+}

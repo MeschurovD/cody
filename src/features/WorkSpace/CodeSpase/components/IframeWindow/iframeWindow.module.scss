@@ -1,0 +1,9 @@
+.iframe_window {
+  height: 100%;
+  @include work-space-container;
+}
+
+.iframe {
+  height: 50rem;
+  margin-bottom: 2rem;
+}

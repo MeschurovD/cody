@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  font-family: 'Roboto Condensed', sans-serif;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-color: rgb(var(--bg-2));
+  font-size: 1.6rem;
+}
+
+a { 
+  color: inherit; 
+} 
+
+
+:root {
+ 
+  --text-color-1: 22, 30, 41;
+  --bg-1: 255, 255, 255;
+  --bg-2: 230, 230, 230;
+  --blackout-color: 1, 1, 1;
+  --icon-color: 230, 230, 230;
+  --icon-button-bg-1: 255, 255, 255;
+  --icon-button-bg-2: 190, 190, 190;
+  --blue-color: 67, 87, 242;
+  --icon-theme-bg: 33, 45, 62;
+  --icon-theme-color: var(--icon-color);
+
+  --border-1: 103, 112, 117;
+  --border-2: 83, 92, 97;
+  color: rgb(var(--text-color-1));
+}
+
+.dark_theme {
+  --text-color-1: 255, 255, 255;
+  --bg-1: 22, 30, 41;
+  --bg-2: 33, 45, 62;
+  --blackout-color: 255, 255, 255;
+  --icon-color: var(--text-color-1);
+  --icon-button-bg-1: var(--bg-1);
+  --icon-button-bg-2: var(--bg-2);
+  --blue-color: 67, 87, 242;
+  --icon-theme-bg: 255, 255, 255;
+  --icon-theme-color: var(--bg-2);
+
+  color: rgb(var(--text-color-1));
+}
+
+@mixin work-space-container {
+  width: clamp(40rem, 100%, 140rem);
+}
+
+.blackout {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: $blackout-color;
+}

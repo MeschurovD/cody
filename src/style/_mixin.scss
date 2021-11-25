@@ -1,0 +1,29 @@
+@mixin button {
+  border-radius: 50%;
+  
+}
+
+@mixin button-text {
+  border-radius: 2rem;
+}
+
+@mixin board {
+  border-radius: 2rem;
+  background-color: $bg-1;
+}
+
+@mixin icon-button($bg: $bg-2) {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid $bg;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all .3s;
+
+  &:hover {
+    border: 1px solid $blue-color;
+    color: $blue-color;
+  }
+}
