@@ -1,6 +1,6 @@
 # Cody
 
-[Demo](https://meschurovd.github.io/cody/)
+[DEMO](https://meschurovd.github.io/cody/)
 
 
 ## Описание
