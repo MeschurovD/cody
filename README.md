@@ -1,46 +1,60 @@
-# Getting Started with Create React App
+# Cody
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Demo](https://meschurovd.github.io/cody/)
 
-## Available Scripts
 
-In the project directory, you can run:
+## Описание
 
-### `npm start`
+Онлайн редактор кода с поддержкой React. Можно писать и редактировать React компоненты в браузере, и сразу увидеть результат.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Возможности
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Создание React компонентов в браузере
+- Показать результат, используя функцию show() для вывода React компонентов
+- Сборка на стороне клиента благодаря [esbuild](https://github.com/evanw/esbuild)
+- Автоматическая загрузка сторонних библиотек из [unpkg](https://unpkg.com/)
+- Создание рабочих Досок
+- Автоматическое сохранение изменений
+- Авторизация и хранение данных в Firebase
 
-### `npm test`
+## Технологии
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [React](https://github.com/facebook/react)
+- [Redux Toolkit](https://github.com/reduxjs/redux-toolkit)
+- [SCSS](https://sass-scss.ru/)
+- [CSS-Modules](https://github.com/css-modules/css-modules)
+- [Axios](https://github.com/axios/axios)
+- [esbuild](https://github.com/evanw/esbuild)
+- [React-EditorJS](https://github.com/Jungwoo-An/react-editor-js)
+- [Lodash](https://github.com/lodash/lodash)
+- [Prettier](https://github.com/prettier/prettier)
+- [Webpack](https://github.com/webpack/webpack)
+- [Firebase](https://firebase.google.com/) 
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Установка
 
-### `npm run eject`
+Клонируйте репозиторий командой:
+```
+git clone https://github.com/MeschurovD/cody.git
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Установите зависимости:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+npm i
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Запуск проекта:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+npm run dev
+```
 
-## Learn More
+Сборка проекта:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+npm run build
+```
