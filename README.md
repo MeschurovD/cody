@@ -21,6 +21,7 @@
 
 - [React](https://github.com/facebook/react)
 - [Redux Toolkit](https://github.com/reduxjs/redux-toolkit)
+- [TypeScript](https://www.typescriptlang.org/)
 - [SCSS](https://sass-scss.ru/)
 - [CSS-Modules](https://github.com/css-modules/css-modules)
 - [Axios](https://github.com/axios/axios)
